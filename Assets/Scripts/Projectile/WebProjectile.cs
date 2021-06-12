@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class WebProjectile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public List<SpringJoint> springJoints = null;
+    public List<SpringJoint> springJoints = null; //All currently connected joints (+1?)
     public float lifetime = 20f;
     private float spawntime = 0f;
+
+    private Rigidbody rb;
 
     void Awake()
     {
         springJoints = new List<SpringJoint>();
 
         spawntime = Time.time;
+
+        rb = this.gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -35,6 +38,7 @@ public class WebProjectile : MonoBehaviour
             {
                 CreateSpringJoint(collision.rigidbody, contact.point);
             }
+            
         }
     }
 
@@ -51,28 +55,47 @@ public class WebProjectile : MonoBehaviour
         springJoint.breakForce = 35f;
     }
 
-    void OnJointBreak()
+    void OnJointBreak(float breakForce)
     {
+        //remove broken springjoint from springjoints list
+        List<SpringJoint> newList = new List<SpringJoint>(springJoints);
         foreach (SpringJoint joint in springJoints)
         {
-            if (joint == null) springJoints.Remove(joint);
+            if (joint == null) newList.Remove(joint);
         }
+        springJoints = newList;
+
+        //if only I could find which joint broke ffs lol
     }
 
-    public void DealDamageToAllAttached()
+    public void DealDamageToAllAttached(float damage)
     {
         List<Rigidbody> exploredBodies = new List<Rigidbody>();
-        DealDamageToAllAttached(exploredBodies);
+        DealDamageToAllAttached(exploredBodies, damage);
     }
 
-    public void DealDamageToAllAttached(List<Rigidbody> exploredBodies)
+    public void DealDamageToAllAttached(List<Rigidbody> exploredBodies, float damage)
     {
+        if (exploredBodies.Contains(rb)) return; //If we've been here before, leave
+
+        //If we haven't been here before, take damage
+        TakeDamage();
+        exploredBodies.Add(rb);
+
+        //Let's check if there are any other connected webs/enemies that need to take damage
         foreach (SpringJoint joint in springJoints)
         {
             WebProjectile webProjectile = joint.connectedBody.GetComponent<WebProjectile>();
             if (webProjectile != null)
             {
-                webProjectile.DealDamageToAllAttached(exploredBodies);
+                webProjectile.DealDamageToAllAttached(exploredBodies, damage);
+                break;
+            }
+
+            EnemyManager enemyManager = joint.connectedBody.GetComponent<EnemyManager>();
+            if (enemyManager != null)
+            {
+                enemyManager.TakeDamage(damage);
             }
         }
     }
