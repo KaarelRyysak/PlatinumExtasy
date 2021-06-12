@@ -9,13 +9,10 @@ public class EnemyProjectile : MonoBehaviour
     
     float destroyTime = 10f;    // Time after which the object will be destroyed 
     
-    Vector3 velocity;
-
-    float scale = 1f;           // Current scale of the projectile
-    float scaleDiminish = 0.5f; // Point after which increases in scale have diminishing returns 
-
-    float damage = 1f; 
-    
+    private Vector3 velocity;
+    private float scale = 1f;           // Current scale of the projectile
+    private float scaleDiminish = 0.5f; // Point after which increases in scale have diminishing returns 
+    private float damage = 1f; 
     private Rigidbody rb;
 
     public void Awake(){
