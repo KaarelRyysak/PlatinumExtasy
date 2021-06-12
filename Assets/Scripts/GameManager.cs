@@ -9,7 +9,7 @@ public partial class GameManager : MonoBehaviour
 
     // Player Stats
     [System.Serializable] public class PlayerStats{
-        public int hp = 5;              // Remaining HP
+        public int hp = 5000;              // Remaining HP
         public int hpMax = 5;           // Max HP value 
         public int enemiesKilled = 0;   // Number of enemies Defeated
         public float timeSurvived = 0;  // How long the player has survived for
@@ -97,7 +97,7 @@ public partial class GameManager : MonoBehaviour
     }
 
     public void StartGame(){
-        
+
         // Destroy any enemies left in scene
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy")) Destroy (enemy);
 
@@ -182,9 +182,9 @@ public partial class GameManager : MonoBehaviour
         if (currentPlayer){
 
             // Reposition Cam
-            CameraMovement.transform.position = new Vector3(currentPlayer.transform.position.x,
-                                                            currentPlayer.transform.position.y+9,
-                                                            currentPlayer.transform.position.z-7);
+            CameraMovement.transform.position = new Vector3(currentPlayer.transform.position.x-0.57f,
+                                                            currentPlayer.transform.position.y+7.04f,
+                                                            currentPlayer.transform.position.z-7.04f);
 
             CameraMovement.enabled = true;
             CameraMovement.SetTarget(currentPlayer);

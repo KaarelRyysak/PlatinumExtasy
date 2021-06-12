@@ -546,12 +546,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 208088021}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 128e022373bf58e4598a658e3874e2e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objectToFollow: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!114 &208088026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3194,6 +3195,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 619743079214691660, guid: 2495242ac11f78c4f889559697fb229d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 619743079401221609, guid: 2495242ac11f78c4f889559697fb229d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3277,6 +3282,14 @@ PrefabInstance:
     - target: {fileID: 619743080075881780, guid: 2495242ac11f78c4f889559697fb229d, type: 3}
       propertyPath: m_Name
       value: UI Camera & Main Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 619743080075881780, guid: 2495242ac11f78c4f889559697fb229d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 619743080075881780, guid: 2495242ac11f78c4f889559697fb229d, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 619743080615415169, guid: 2495242ac11f78c4f889559697fb229d, type: 3}
       propertyPath: m_Name
