@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
 
         // Disable camera movement on startup
         DisablePlayerCamera();
+
+        GetMainMenu();
     }
 
 
@@ -97,18 +99,22 @@ public class GameManager : MonoBehaviour
     }
 
     public void SpawnPlayer(){
-
         currentPlayer = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity); // Spawn the player in position
         currentPlayer.name = "Player";
-        
-        // Enable camera movement on startup
-
     }
 
+    // Screen to be displayed on death
     public void GetDeathScreen(){
-
-        // Show death screen
+        screen.mainMenu.SetActive(false);
+        screen.playerHud.SetActive(false);
         screen.youDied.SetActive(true);
+    }
+
+    // Screen to be displayed on startup
+    public void GetMainMenu(){
+        screen.mainMenu.SetActive(true);
+        screen.playerHud.SetActive(false);
+        screen.youDied.SetActive(false);
     }
 
     public void ResetPlayerPosition(){
