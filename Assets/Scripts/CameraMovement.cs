@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     
-    [SerializeField] GameObject objectToFollow;
+    [SerializeField] public GameObject objectToFollow;
     Vector3 offset = new Vector3(0, 0, 0);
     void Start()
     {

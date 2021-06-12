@@ -11,19 +11,19 @@ public class PlayerHUD : MonoBehaviour
     public TextMeshProUGUI textHP;
     public TextMeshProUGUI textScore;
 
-    PlayerStats PlayerStats;
+    GameManager GameManager;
 
     void Start(){
-        PlayerStats = FindObjectOfType<PlayerStats>();
-        if (!PlayerStats) Debug.LogError("Error: PlayerStats could not be located!",this);
+        GameManager = FindObjectOfType<GameManager>();
+        if (!GameManager) Debug.LogError("Error: GameManager could not be located!",this);
     }
     
 
     void Update(){
 
         // Update player HUD
-        textHP.text  = "HP: " + PlayerStats.hp;
-        textScore.text  = "Score: " + (int)(PlayerStats.timeSurvived * 10);
+        textHP.text  = "HP: " + GameManager.stats.hp;
+        textScore.text  = "Score: " + (int)(GameManager.stats.timeSurvived * 10);
 
     }
 }
