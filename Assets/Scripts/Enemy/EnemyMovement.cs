@@ -6,7 +6,14 @@ public class EnemyMovement : MonoBehaviour
 {
     // Transform to follow
     Transform targetTransform;
-    float speed = 2.5f;
+
+    Rigidbody rb;
+    float speed = 650f;
+
+    void Awake()
+    {
+        rb = this.GetComponent<Rigidbody>();
+    }
 
     void Start()
     {
@@ -24,6 +31,8 @@ public class EnemyMovement : MonoBehaviour
         directionToTarget.z = (targetTransform.position.z - transform.position.z);
         directionToTarget = directionToTarget.normalized;
         //Debug.DrawRay(transform.position, directionToTarget * 3, Color.green);
-        transform.Translate(directionToTarget * speed * Time.deltaTime, Space.World);
+        //transform.Translate(directionToTarget * speed * Time.deltaTime, Space.World);
+
+        rb.AddForce(directionToTarget * speed * Time.deltaTime);
     }
 }
