@@ -19,15 +19,19 @@ public class GameManager : MonoBehaviour
     }
     public PlayerStats stats;
 
+
     [System.Serializable] public class ScreenData{
         public GameObject mainMenu;
         public GameObject playerHud;
-        public GameObject youDied;
-        public TextMeshProUGUI youDiedHighscore;
-        public TextMeshProUGUI youDiedYourScore;
-        public TextMeshProUGUI youDiedLeaderboard;
+        public GameObject gameOver;
+        public GameObject leaderboard;
+        public TextMeshProUGUI gameOverScore;
+        public TextMeshProUGUI mainMenuScore;
+        // public TextMeshProUGUI gameOverHighscore;
+        // public TextMeshProUGUI gameOverLeaderboard;
     }
     public ScreenData screen;
+
 
     [System.Serializable] public class LeaderboardData{
         public int wave;
@@ -42,13 +46,14 @@ public class GameManager : MonoBehaviour
     }
     public List<WaveData> waveData = new List<WaveData>();
 
-    public GameObject playerPrefab;     // Prefab of the player
+
+    public GameObject playerPrefab;         // Prefab of the player
+    public CameraMovement CameraMovement;
     private GameObject currentPlayer;   
     private GameObject currentLevel;
+    private bool playing = false;           // True when the player is spawned in
 
-    public CameraMovement CameraMovement;
 
-    public bool playing = false;
 
     void Awake(){
 
@@ -61,8 +66,15 @@ public class GameManager : MonoBehaviour
 
     void Update(){
         if (playing){
-            stats.timeSurvived += Time.deltaTime;
+
+            // Check for player death
             if (stats.hp<=0) EndGame();
+
+            // Time survived
+            stats.timeSurvived += Time.deltaTime;
+            
+            // Score calculation
+            stats.score += (int)(stats.timeSurvived * 10);
         }
     }
 
@@ -73,11 +85,12 @@ public class GameManager : MonoBehaviour
         stats.currentWave = 0;
         stats.timeSurvived = 0;
         stats.newHighscore = false;
+        stats.score = 0;
 
         // Set hud active and hide menu
         screen.playerHud.SetActive(true);
         screen.mainMenu.SetActive(false);
-        screen.youDied.SetActive(false);
+        screen.gameOver.SetActive(false);
         
         StartLevel(0);
 
@@ -91,11 +104,6 @@ public class GameManager : MonoBehaviour
         Destroy(currentPlayer);
         DisablePlayerCamera();
         GetDeathScreen();
-
-        if (stats.score > stats.highscore){
-            stats.newHighscore = true;
-        }
-
     }
 
     public void SpawnPlayer(){
@@ -107,14 +115,37 @@ public class GameManager : MonoBehaviour
     public void GetDeathScreen(){
         screen.mainMenu.SetActive(false);
         screen.playerHud.SetActive(false);
-        screen.youDied.SetActive(true);
+        screen.gameOver.SetActive(true);
+
+
+        screen.gameOverScore.text = "";
+        if (stats.score > stats.highscore){
+            stats.newHighscore = true;
+            screen.gameOverScore.text += "<color=#14FFRW>NEW HIGH SCORE!</color>" + "\n";
+            screen.gameOverScore.text += "SCORE: " + stats.score + "\n";
+
+            // Set new highscore
+            stats.highscore = stats.score;
+
+        }else{
+            screen.gameOverScore.text += "SCORE: " + stats.score + "\n";
+            screen.gameOverScore.text += "<color=#14FFRW>HIGHSCORE TO BEAT: </color>"+stats.highscore + "\n";
+        }
+
+        // Get timer time
+        int minutes = Mathf.FloorToInt(stats.timeSurvived / 60f);
+        int seconds = Mathf.FloorToInt(stats.timeSurvived - minutes * 60);
+        string survivalTime = string.Format("{0:0}:{1:00}", minutes, seconds);
+        screen.gameOverScore.text += "SURVIVED FOR: " + survivalTime;
     }
 
     // Screen to be displayed on startup
     public void GetMainMenu(){
         screen.mainMenu.SetActive(true);
         screen.playerHud.SetActive(false);
-        screen.youDied.SetActive(false);
+        screen.gameOver.SetActive(false);
+
+        screen.mainMenuScore.text = "Highscore: " + stats.highscore;
     }
 
     public void ResetPlayerPosition(){

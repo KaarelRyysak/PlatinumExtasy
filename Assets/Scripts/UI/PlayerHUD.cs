@@ -23,7 +23,7 @@ public class PlayerHUD : MonoBehaviour
 
         // Update player HUD
         textHP.text  = "HP: " + GameManager.stats.hp;
-        textScore.text  = "Score: " + (int)(GameManager.stats.timeSurvived * 10);
+        textScore.text  = "Score: " + GameManager.stats.score;
 
     }
 }
