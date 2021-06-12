@@ -4,9 +4,10 @@ using UnityEngine;
 
 using TMPro;
 
-public class GameManager : MonoBehaviour
+public partial class GameManager : MonoBehaviour
 {
 
+    // Player Stats
     [System.Serializable] public class PlayerStats{
         public int hp = 5;              // Remaining HP
         public int hpMax = 5;           // Max HP value 
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
     public PlayerStats stats;
 
 
+    // Screen Data
     [System.Serializable] public class ScreenData{
         public GameObject mainMenu;
         public GameObject playerHud;
@@ -27,12 +29,11 @@ public class GameManager : MonoBehaviour
         public GameObject leaderboard;
         public TextMeshProUGUI gameOverScore;
         public TextMeshProUGUI mainMenuScore;
-        // public TextMeshProUGUI gameOverHighscore;
-        // public TextMeshProUGUI gameOverLeaderboard;
     }
     public ScreenData screen;
 
 
+    // Leader board Stats
     [System.Serializable] public class LeaderboardData{
         public int wave;
         public float time;
@@ -41,12 +42,21 @@ public class GameManager : MonoBehaviour
     public List<LeaderboardData> leaderboard = new List<LeaderboardData>();
 
 
+    // Wave System
+    [System.Serializable] public class WaveEnemyData{
+        public GameObject enemyPrefab;
+        [Range(0, 50)] public int spawnCounter;    // Number spawned
+        [Range(0, 50)] public int spawnDelay;      // Seconds between each spawn
+        public int totalSpawned; // Total number that have been spawned thus far
+    }
     [System.Serializable] public class WaveData{
-        GameObject levelPrefab;
+        public GameObject levelPrefab;
+        public List<WaveEnemyData> enemy = new List<WaveEnemyData>();
     }
     public List<WaveData> waveData = new List<WaveData>();
 
 
+    // Additional Refs
     public GameObject playerPrefab;         // Prefab of the player
     public CameraMovement CameraMovement;
     private GameObject currentPlayer;   
@@ -54,7 +64,7 @@ public class GameManager : MonoBehaviour
     private bool playing = false;           // True when the player is spawned in
 
 
-
+    // Initialization
     void Awake(){
 
         // Disable camera movement on startup
@@ -63,6 +73,14 @@ public class GameManager : MonoBehaviour
         GetMainMenu();
     }
 
+
+
+
+
+
+    //=================//
+    // GAME MANAGEMENT //
+    //=================//
 
     void Update(){
         if (playing){
@@ -87,7 +105,7 @@ public class GameManager : MonoBehaviour
         stats.newHighscore = false;
         stats.score = 0;
 
-        // Set hud active and hide menu
+        // Set HUD active and hide menu
         screen.playerHud.SetActive(true);
         screen.mainMenu.SetActive(false);
         screen.gameOver.SetActive(false);
@@ -110,6 +128,65 @@ public class GameManager : MonoBehaviour
         currentPlayer = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity); // Spawn the player in position
         currentPlayer.name = "Player";
     }
+
+    public void ResetPlayerPosition(){
+        GameObject spawnTarget = GameObject.Find("PlayerSpawnPoint"); // Search for spawn marker in word
+        if (!spawnTarget) {
+            Debug.LogError("Error: No spawn point could be found in the scene!",this); 
+            return;
+        }
+        currentPlayer.transform.position = spawnTarget.transform.position;
+    }
+
+    public void StartLevel(int levelIndex){
+
+        // TODO: Replace last level in the scene (if present) with the current level map
+
+
+
+        SpawnPlayer();
+        ResetPlayerPosition();
+        EnablePlayerCamera();
+
+        StartCoroutine(SpawnEnemyLoop(levelIndex));
+    }
+
+    public void NextLevel(){
+
+        Debug.Log("LEVEL COMPLETE!");
+
+
+        // TODO: Checks to see if all levels have been completed
+        // For now get main menu
+
+
+        GetMainMenu();       
+    }
+
+    public void EnablePlayerCamera(){
+
+        if (currentPlayer){
+            CameraMovement.enabled = true;
+            CameraMovement.objectToFollow = currentPlayer;
+        }else{
+            Debug.LogError("Error: No player present. CameraMovement can not be enabled at this time.", this);
+            DisablePlayerCamera();
+        }
+    }
+
+    public void DisablePlayerCamera(){
+
+        CameraMovement.enabled = false;
+    }
+
+
+
+
+
+
+    //=================//
+    // MENU MANAGEMENT //
+    //=================//
 
     // Screen to be displayed on death
     public void GetDeathScreen(){
@@ -146,43 +223,5 @@ public class GameManager : MonoBehaviour
         screen.gameOver.SetActive(false);
 
         screen.mainMenuScore.text = "Highscore: " + stats.highscore;
-    }
-
-    public void ResetPlayerPosition(){
-        GameObject spawnTarget = GameObject.Find("PlayerSpawnPoint"); // Search for spawn marker in word
-        if (!spawnTarget) {
-            Debug.LogError("Error: No spawn point could be found in the scene!",this); 
-            return;
-        }
-        currentPlayer.transform.position = spawnTarget.transform.position;
-    }
-
-    public void StartLevel(int levelIndex){
-
-        SpawnPlayer();
-        ResetPlayerPosition();
-        EnablePlayerCamera();
-    }
-
-
-    public void NextLevel(){
-
-    }
-
-
-    public void EnablePlayerCamera(){
-
-        if (currentPlayer){
-            CameraMovement.enabled = true;
-            CameraMovement.objectToFollow = currentPlayer;
-        }else{
-            Debug.LogError("Error: No player present. CameraMovement can not be enabled at this time.", this);
-            DisablePlayerCamera();
-        }
-    }
-
-    public void DisablePlayerCamera(){
-
-        CameraMovement.enabled = false;
     }
 }
