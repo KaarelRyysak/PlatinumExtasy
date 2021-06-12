@@ -89,8 +89,8 @@ public class EnemyProjectile : MonoBehaviour
 
 
     void DamagePlayer(Collider collider){
-        PlayerStats PlayerStats = collider.gameObject.GetComponent<PlayerStats>();
-        PlayerStats.hp -= 1;
+        GameManager GameManager = FindObjectOfType<GameManager>();
+        GameManager.stats.hp -= (int)damage;
         DestroySelf();
     }
 
