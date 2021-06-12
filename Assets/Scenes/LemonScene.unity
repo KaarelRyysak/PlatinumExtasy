@@ -441,7 +441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1495317641261238349, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6725800665736580709, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
       propertyPath: shootFrequency
@@ -571,7 +571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1495317641261238349, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6725800665736580709, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
       propertyPath: shootFrequency
@@ -593,6 +593,10 @@ PrefabInstance:
     - target: {fileID: 2552784447947931927, guid: 818e6f0cc0ceb5747be7a23fede3d2c9, type: 3}
       propertyPath: m_Name
       value: Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 2552784447947931927, guid: 818e6f0cc0ceb5747be7a23fede3d2c9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6424120231730353463, guid: 818e6f0cc0ceb5747be7a23fede3d2c9, type: 3}
       propertyPath: m_Pivot.x
@@ -1144,7 +1148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1495317641261238349, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6725800665736580709, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
       propertyPath: shootFrequency
@@ -1377,7 +1381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1495317641261238349, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6725800665736580709, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
       propertyPath: shootFrequency
@@ -1407,8 +1411,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   webProjectilePrefab: {fileID: 2552784447947931927, guid: f1a5832443afed94a8bfdebca884ced9, type: 3}
-  websPerClick: 1
-  shootFrequency: 0.6
+  websPerBurst: 8
+  burstSpeed: 0.01
   sprayRandomness: 0.15
   projectileSpeed: 250
 --- !u!1 &1909824880
@@ -1903,6 +1907,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1994153541389051512, guid: 293f7b5d18f60d545b5e9a08af52e9af, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 293f7b5d18f60d545b5e9a08af52e9af, type: 3}
 --- !u!1001 &1495317641008787448
@@ -1962,7 +1970,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1495317641261238349, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6725800665736580709, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
       propertyPath: shootFrequency
@@ -2031,7 +2039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 799710774595523343, guid: c28177a1d50aa674c960b04ef0b21e46, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4796214703762265383, guid: c28177a1d50aa674c960b04ef0b21e46, type: 3}
       propertyPath: shootFrequency

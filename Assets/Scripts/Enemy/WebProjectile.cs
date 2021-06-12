@@ -27,7 +27,7 @@ public class WebProjectile : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if ( collision.rigidbody != null  && collision.gameObject.tag != "Player"  && collision.gameObject.tag != "Web") 
+        if ( collision.rigidbody != null  && collision.gameObject.tag != "Player") 
         {
             foreach (ContactPoint contact in collision.contacts)
             {
