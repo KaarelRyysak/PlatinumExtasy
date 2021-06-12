@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6583830883828609302}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,7 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac47664bc15aef54f99ec951d080927d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootFrequency: 1
+  shootFrequency: 1.5
+  projectilePrefab: {fileID: 2552784447947931927, guid: 818e6f0cc0ceb5747be7a23fede3d2c9, type: 3}
 --- !u!114 &6583830883828609302
 MonoBehaviour:
   m_ObjectHideFlags: 0

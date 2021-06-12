@@ -8,7 +8,7 @@ public class EnemyProjectileEmitter : MonoBehaviour
     [SerializeField] float shootFrequency = 1f;
     float shootTime = 0;
     public GameObject projectilePrefab;
-    float projectileSpeed = 500f;
+    public float projectileSpeed = 250f;
 
     void Start()
     {
@@ -39,7 +39,14 @@ public class EnemyProjectileEmitter : MonoBehaviour
 
         // Create the new projectile
         GameObject projectile = UnityEngine.Object.Instantiate(projectilePrefab);
+        projectile.name = "EnemyProjectile";
         projectile.transform.position = transform.position + dir; // Set pos
+        dir = Vector3.Normalize(dir);
         projectile.GetComponent<Rigidbody>().AddRelativeForce(dir * projectileSpeed); // Set force in dir
+        
+        // Set projectile prefs
+        EnemyProjectile EnemyProjectile = projectile.GetComponent<EnemyProjectile>();
+        EnemyProjectile.direction = dir;
+        EnemyProjectile.speed = projectileSpeed;
     }
 }
