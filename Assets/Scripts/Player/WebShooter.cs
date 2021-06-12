@@ -6,8 +6,10 @@ public class WebShooter : MonoBehaviour
 {
     public GameObject webProjectilePrefab;
     private int remainingBursts = 6;
-    public int websPerBurst;
-    public float shootFrequency = 0.1f;
+    public int websPerBurst = 8;
+    private int remainingWebs = 0;
+    public float burstSpeed = 0.1f;
+    private float timeSinceLastWeb = 999f;
     public float sprayRandomness = 0.3f;
     public float projectileSpeed;
     private float remainingBlobs = 6f;
@@ -18,15 +20,20 @@ public class WebShooter : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        if ( Input.GetMouseButtonDown(0) && RemainingBursts > 0f) 
+        if ( Input.GetMouseButtonDown(0) && remainingBursts > 0) 
         { 
-            for (int i = 0; i < websPerClick; i++) { ShootWeb(); }
-            remainingWeb = 0f;
+            remainingWebs = websPerBurst;
         }
-        
 
+        if ( remainingWebs > 0  && timeSinceLastWeb > burstSpeed)
+        {
+            ShootWeb();
+            remainingWebs -= 1;
+            timeSinceLastWeb = 0f;
+        }
+        timeSinceLastWeb += Time.deltaTime;
     }
 
     private void ShootWeb()
