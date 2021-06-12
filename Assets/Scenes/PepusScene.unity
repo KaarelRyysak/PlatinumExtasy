@@ -546,7 +546,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 208088021}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 128e022373bf58e4598a658e3874e2e6, type: 3}
   m_Name: 
@@ -1805,9 +1805,13 @@ MonoBehaviour:
   waveData:
   - levelPrefab: {fileID: 0}
     enemy:
-    - enemyPrefab: {fileID: 0}
-      spawnCounter: 0
-      spawnDelay: 0
+    - enemyPrefab: {fileID: 799710774595523343, guid: c28177a1d50aa674c960b04ef0b21e46, type: 3}
+      spawnCounter: 5
+      spawnDelay: 3
+      totalSpawned: 0
+    - enemyPrefab: {fileID: 1495317641261238349, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
+      spawnCounter: 8
+      spawnDelay: 3
       totalSpawned: 0
   playerPrefab: {fileID: 537548160800339195, guid: 293f7b5d18f60d545b5e9a08af52e9af, type: 3}
   CameraMovement: {fileID: 208088025}
@@ -3321,7 +3325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6433701793690285021, guid: fcafbe6cb1b2ee24d87c520e19f6bbd8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.39
+      value: 8.31
       objectReference: {fileID: 0}
     - target: {fileID: 6433701793690285021, guid: fcafbe6cb1b2ee24d87c520e19f6bbd8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3329,7 +3333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6433701793690285021, guid: fcafbe6cb1b2ee24d87c520e19f6bbd8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.61
+      value: 9.79
       objectReference: {fileID: 0}
     - target: {fileID: 6433701793690285021, guid: fcafbe6cb1b2ee24d87c520e19f6bbd8, type: 3}
       propertyPath: m_LocalRotation.w
