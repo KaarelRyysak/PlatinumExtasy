@@ -53,9 +53,21 @@ public class WebProjectile : MonoBehaviour
         springJoint.spring = 40f;
         springJoint.damper = 4f;
         springJoint.breakForce = 35f;
+
+        EnemyManager enemyManager = target.gameObject.GetComponent<EnemyManager>();
+        if (enemyManager != null)
+        {
+            enemyManager.attachedJoints.Add(springJoint);
+        }
     }
 
     void OnJointBreak(float breakForce)
+    {
+        refreshSpringJoints();
+        //if only I could find which joint broke ffs lol
+    }
+
+    void refreshSpringJoints()
     {
         //remove broken springjoint from springjoints list
         List<SpringJoint> newList = new List<SpringJoint>(springJoints);
@@ -64,8 +76,6 @@ public class WebProjectile : MonoBehaviour
             if (joint == null) newList.Remove(joint);
         }
         springJoints = newList;
-
-        //if only I could find which joint broke ffs lol
     }
 
     public void DealDamageToAllAttached(float damage)
@@ -103,5 +113,40 @@ public class WebProjectile : MonoBehaviour
     public void TakeDamage()
     {
         //Make color flash white here
+    }
+
+    public List<GameObject> GetAllAttachedEnemies(List<Rigidbody> exploredBodies, List<GameObject> foundEnemies)
+    {
+        if (exploredBodies.Contains(rb)) return foundEnemies; //If we've been here before, leave
+
+        //If we haven't been here before, let's add this to the attached enemies
+        exploredBodies.Add(this.rb);
+        
+        refreshSpringJoints();
+        foreach (SpringJoint joint in springJoints)
+        {
+            if (joint.gameObject.tag == "Enemy")
+            {
+                EnemyManager enemyManager = joint.gameObject.GetComponent<EnemyManager>();
+                foundEnemies = enemyManager.GetAllAttachedEnemies(exploredBodies, foundEnemies);
+            }
+            if (joint.gameObject.tag == "Web")
+            {
+                WebProjectile enemyManager = joint.gameObject.GetComponent<WebProjectile>();
+                foundEnemies = enemyManager.GetAllAttachedEnemies(exploredBodies, foundEnemies);
+            }
+            if (joint.connectedBody.gameObject.tag == "Enemy")
+            {
+                EnemyManager enemyManager = joint.connectedBody.gameObject.GetComponent<EnemyManager>();
+                foundEnemies = enemyManager.GetAllAttachedEnemies(exploredBodies, foundEnemies);
+            }
+            if (joint.connectedBody.gameObject.tag == "Web")
+            {
+                WebProjectile enemyManager = joint.connectedBody.gameObject.GetComponent<WebProjectile>();
+                foundEnemies = enemyManager.GetAllAttachedEnemies(exploredBodies, foundEnemies);
+            }
+        }
+
+        return foundEnemies;
     }
 }
