@@ -1856,6 +1856,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1814095887, guid: 293f7b5d18f60d545b5e9a08af52e9af, type: 3}
+      propertyPath: m_Constraints
+      value: 84
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814095887, guid: 293f7b5d18f60d545b5e9a08af52e9af, type: 3}
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}

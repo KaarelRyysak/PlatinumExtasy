@@ -12,12 +12,14 @@ public class WebProjectile : MonoBehaviour
     void Awake()
     {
         springJoints = new List<SpringJoint>();
+
         spawntime = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //If lifetime is over, destroy self
         if ( Time.time > spawntime + lifetime )
         {
             Destroy(this.gameObject);
@@ -46,7 +48,37 @@ public class WebProjectile : MonoBehaviour
         springJoint.connectedAnchor = contactPoint;
         springJoint.spring = 40f;
         springJoint.damper = 4f;
-        springJoint.breakForce = 50f;
+        springJoint.breakForce = 35f;
     }
 
+    void OnJointBreak()
+    {
+        foreach (SpringJoint joint in springJoints)
+        {
+            if (joint == null) springJoints.Remove(joint);
+        }
+    }
+
+    public void DealDamageToAllAttached()
+    {
+        List<Rigidbody> exploredBodies = new List<Rigidbody>();
+        DealDamageToAllAttached(exploredBodies);
+    }
+
+    public void DealDamageToAllAttached(List<Rigidbody> exploredBodies)
+    {
+        foreach (SpringJoint joint in springJoints)
+        {
+            WebProjectile webProjectile = joint.connectedBody.GetComponent<WebProjectile>();
+            if (webProjectile != null)
+            {
+                webProjectile.DealDamageToAllAttached(exploredBodies);
+            }
+        }
+    }
+
+    public void TakeDamage()
+    {
+        //Make color flash white here
+    }
 }
