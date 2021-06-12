@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 537548160800339196}
   - component: {fileID: 1994153541389051512}
   - component: {fileID: 1814095887}
+  - component: {fileID: 4251890984207889112}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -123,6 +124,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08dd06bb6c1d8f9448db4e2b85fdd586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 5
+  enemiesKilled: 0
+  timeSurvived: 0
 --- !u!54 &1814095887
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -137,5 +141,22 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!114 &4251890984207889112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537548160800339195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf771e7b07afe7448a096a530b8ccae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  webProjectilePrefab: {fileID: 2552784447947931927, guid: f1a5832443afed94a8bfdebca884ced9, type: 3}
+  websPerBurst: 8
+  burstSpeed: 0.01
+  sprayRandomness: 0.15
+  projectileSpeed: 1000
