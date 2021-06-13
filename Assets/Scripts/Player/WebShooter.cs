@@ -6,8 +6,8 @@ public class WebShooter : MonoBehaviour
 {
     public GameObject webProjectilePrefab;
     private int remainingBursts = 6;
-    public int websPerBurst = 8;
-    private int remainingWebs = 0;
+    public int shotsPerBurst = 8;
+    private int remainingPellets = 0;
     public float burstSpeed = 0.1f;
     private float timeSinceLastWeb = 999f;
     public float sprayRandomness = 0.3f;
@@ -24,13 +24,13 @@ public class WebShooter : MonoBehaviour
     {
         if ( Input.GetMouseButtonDown(1) && remainingBursts > 0) 
         { 
-            remainingWebs = websPerBurst;
+            remainingPellets = shotsPerBurst;
         }
 
-        if ( remainingWebs > 0  && timeSinceLastWeb > burstSpeed)
+        if ( remainingPellets > 0  && timeSinceLastWeb > burstSpeed)
         {
             ShootWeb();
-            remainingWebs -= 1;
+            remainingPellets -= 1;
             timeSinceLastWeb = 0f;
         }
         timeSinceLastWeb += Time.deltaTime;
