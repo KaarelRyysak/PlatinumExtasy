@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 4
+  scoreAwardedOnDeath: 4
 --- !u!1001 &8161803872931722233
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84,6 +85,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1495317641261238351, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 903849e168b286145852d9b3b4ab4215, type: 2}
     - target: {fileID: 6636961663663007822, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
       propertyPath: combinedEnemy
       value: 
