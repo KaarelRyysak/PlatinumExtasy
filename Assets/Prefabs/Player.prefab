@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   webProjectilePrefab: {fileID: 2552784447947931927, guid: f1a5832443afed94a8bfdebca884ced9, type: 3}
-  websPerBurst: 8
+  shotsPerBurst: 8
   burstSpeed: 0.01
   sprayRandomness: 0.15
   projectileSpeed: 1000

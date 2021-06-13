@@ -10,9 +10,16 @@ public class EnemyProjectileEmitter : MonoBehaviour
     public GameObject projectilePrefab;
     public float projectileSpeed = 250f;
 
+    public AudioManager.AudioSound onFireSound;
+    private AudioManager AudioManager;
+
     void Start()
     {
         projectilePattern = GetComponent<IProjectilePattern>();
+
+        // Link the emitter to the AudioManager
+        AudioManager = FindObjectOfType<AudioManager>();
+        if (!AudioManager) Debug.LogError("ERROR: AudioManager could not be found on this object! Please add one!",this);
     }
 
     void Update()
@@ -48,5 +55,8 @@ public class EnemyProjectileEmitter : MonoBehaviour
         EnemyProjectile EnemyProjectile = projectile.GetComponent<EnemyProjectile>();
         EnemyProjectile.direction = dir;
         EnemyProjectile.speed = projectileSpeed;
+
+        // Play sound
+        if (onFireSound.clip != null) AudioManager.PlaySound(onFireSound);
     }
 }
