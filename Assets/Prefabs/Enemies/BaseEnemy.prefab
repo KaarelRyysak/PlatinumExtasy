@@ -156,6 +156,7 @@ MonoBehaviour:
     minDistance: 1
     maxDistance: 10
     rolloffMode: 1
+    setAtObjPos: 0
     source: {fileID: 0}
 --- !u!114 &6583830883828609302
 MonoBehaviour:
@@ -212,3 +213,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 4
   scoreAwardedOnDeath: 400
+  onHitSound:
+    clip: {fileID: 8300000, guid: d890e7c03a411c249be43f84c1213ae0, type: 3}
+    id: 
+    volume: -0.5
+    pitch: 0
+    output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
+    soundObject: {fileID: 0}
+    spatialBlend: 0
+    minDistance: 1
+    maxDistance: 10
+    rolloffMode: 1
+    setAtObjPos: 1
+    source: {fileID: 0}
+  onDestroySound:
+    clip: {fileID: 8300000, guid: 0944bd6dbb049c6448080c831028b6ea, type: 3}
+    id: 
+    volume: -0.5
+    pitch: 0
+    output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
+    soundObject: {fileID: 0}
+    spatialBlend: 0
+    minDistance: 1
+    maxDistance: 10
+    rolloffMode: 1
+    setAtObjPos: 1
+    source: {fileID: 0}
