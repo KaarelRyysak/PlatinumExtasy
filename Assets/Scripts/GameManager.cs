@@ -116,7 +116,8 @@ public partial class GameManager : MonoBehaviour
 
     void FixedUpdate(){
         // Score calculation
-        stats.score += (int)(Time.fixedDeltaTime * 100);
+        stats.score -= (int)(Time.fixedDeltaTime * 100);
+        if (stats.score < 0) { stats.score = 0; }
 
     }
 
@@ -140,7 +141,7 @@ public partial class GameManager : MonoBehaviour
         stats.currentWave = 0;
         stats.timeSurvived = 0;
         stats.newHighscore = false;
-        stats.score = 0;
+        stats.score = 1000;
 
         // Set HUD active and hide menu
         HideAllScreens();
