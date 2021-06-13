@@ -115,8 +115,6 @@ public partial class GameManager : MonoBehaviour
     public void StartGame(){
 
         Debug.Log("Starting game!");
-        Debug.Log("waveData.Count: "+waveData.Count);
-
 
         // Destroy any enemies left in scene
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy")) Destroy (enemy);
@@ -190,9 +188,9 @@ public partial class GameManager : MonoBehaviour
         if (currentLevel) Destroy(currentLevel);
 
         // Create new level
-        GameObject newLevel = Instantiate(waveData[levelIndex].levelPrefab, new Vector3(0f,0f,0f), Quaternion.identity);
-        newLevel.transform.localScale = new Vector3(1f,1f,1f);
-        newLevel.transform.localPosition = new Vector3(0f,0f,0f);
+        currentLevel = Instantiate(waveData[levelIndex].levelPrefab, new Vector3(0f,0f,0f), Quaternion.identity);
+        currentLevel.transform.localScale = new Vector3(1f,1f,1f);
+        currentLevel.transform.localPosition = new Vector3(0f,0f,0f);
 
         // spawn player if this is the first level
         if (levelIndex==0 ) SpawnPlayer();

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1814095887}
   - component: {fileID: 4251890984207889112}
   - component: {fileID: 6694235882791593749}
+  - component: {fileID: 4190848683929003307}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -141,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   webProjectilePrefab: {fileID: 2552784447947931927, guid: f1a5832443afed94a8bfdebca884ced9, type: 3}
+  remainingBursts: 6
   shotsPerBurst: 8
   burstSpeed: 0.01
   sprayRandomness: 0.15
@@ -156,6 +158,7 @@ MonoBehaviour:
     minDistance: 1
     maxDistance: 10
     rolloffMode: 0
+    setAtObjPos: 0
     source: {fileID: 0}
 --- !u!114 &6694235882791593749
 MonoBehaviour:
@@ -184,4 +187,81 @@ MonoBehaviour:
     minDistance: 1
     maxDistance: 10
     rolloffMode: 0
+    setAtObjPos: 0
     source: {fileID: 0}
+--- !u!114 &4190848683929003307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537548160800339195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09bbacd71feda224e9d4797d43fd9869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundList:
+  - clip: {fileID: 8300000, guid: d45d60489afb9c4439ed88daee463b1f, type: 3}
+    id: 
+    volume: 0
+    pitch: 0
+    output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
+    soundObject: {fileID: 537548160800339195}
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    rolloffMode: 0
+    setAtObjPos: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 5356b1d568f8d7e4798ef6bbfd9d439f, type: 3}
+    id: 
+    volume: 0
+    pitch: 0
+    output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
+    soundObject: {fileID: 537548160800339195}
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    rolloffMode: 0
+    setAtObjPos: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: ce7f3465edd20c54fa6a5bab08adb8c5, type: 3}
+    id: 
+    volume: 0
+    pitch: 0
+    output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
+    soundObject: {fileID: 537548160800339195}
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    rolloffMode: 0
+    setAtObjPos: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 939c0858c05c86c499c91510dc98ff13, type: 3}
+    id: 
+    volume: 0
+    pitch: 0
+    output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
+    soundObject: {fileID: 537548160800339195}
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    rolloffMode: 0
+    setAtObjPos: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: ac60b84eb52c1c54aa937d937e3d0657, type: 3}
+    id: 
+    volume: 0
+    pitch: 0
+    output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
+    soundObject: {fileID: 537548160800339195}
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    rolloffMode: 0
+    setAtObjPos: 0
+    source: {fileID: 0}
+  randomSoundOnRandomDelay: 1
+  minDelay: 5
+  maxDelay: 30

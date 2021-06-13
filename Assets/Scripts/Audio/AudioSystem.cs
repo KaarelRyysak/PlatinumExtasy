@@ -9,8 +9,8 @@ public class AudioSystem : MonoBehaviour
     public List<AudioManager.AudioSound> soundList = new List<AudioManager.AudioSound>();
     public bool randomSoundOnRandomDelay = false;
 
-    [Range(0.1f, 10f)] float minDelay = 5;
-    [Range(0.1f, 10f)] float maxDelay = 100;
+    [Range(0.1f, 100f)] public float minDelay = 5;
+    [Range(0.1f, 100f)] public float maxDelay = 100;
 
     void Start(){
         StartCoroutine(RandomDelayLoop());
