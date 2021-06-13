@@ -145,6 +145,18 @@ MonoBehaviour:
   burstSpeed: 0.01
   sprayRandomness: 0.15
   projectileSpeed: 1000
+  onFireSound:
+    clip: {fileID: 8300000, guid: e25c7bf56eb81e24fadbc04338027100, type: 3}
+    id: 
+    volume: -0.727
+    pitch: 0
+    output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
+    soundObject: {fileID: 537548160800339195}
+    spatialBlend: 0
+    minDistance: 1
+    maxDistance: 10
+    rolloffMode: 0
+    source: {fileID: 0}
 --- !u!114 &6694235882791593749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,3 +173,15 @@ MonoBehaviour:
   shootSpeed: 0.2
   sprayRandomness: 0.05
   projectileSpeed: 1000
+  onFireSound:
+    clip: {fileID: 8300000, guid: 75f9207d3afc48242a05145105cad3d2, type: 3}
+    id: 
+    volume: -0.775
+    pitch: 0
+    output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
+    soundObject: {fileID: 537548160800339195}
+    spatialBlend: 0
+    minDistance: 1
+    maxDistance: 10
+    rolloffMode: 0
+    source: {fileID: 0}

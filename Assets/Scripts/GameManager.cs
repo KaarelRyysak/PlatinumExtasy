@@ -195,9 +195,9 @@ public partial class GameManager : MonoBehaviour
         if (currentPlayer){
 
             // Reposition Cam
-            CameraMovement.transform.position = new Vector3(currentPlayer.transform.position.x-0.57f,
-                                                            currentPlayer.transform.position.y+7.04f,
-                                                            currentPlayer.transform.position.z-7.04f);
+            CameraMovement.transform.position = new Vector3(currentPlayer.transform.position.x,
+                                                            currentPlayer.transform.position.y+7f,
+                                                            currentPlayer.transform.position.z-7f);
 
             CameraMovement.enabled = true;
             CameraMovement.SetTarget(currentPlayer);
