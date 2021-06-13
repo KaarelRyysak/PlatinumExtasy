@@ -5,7 +5,7 @@ using UnityEngine;
 public class SplitterAbility : MonoBehaviour
 {
     [SerializeField] int splitsLeft = 3;
-    float splitDelay = 5;
+    float splitDelay = 4f;
     float splitCountdown;
     //bool hasSplit = false;
     GameObject SplitObject;

@@ -43,7 +43,7 @@ public class EnemyProjectile : MonoBehaviour
                 break;
 
             case("Enemy"):      // collision with enemy
-                DestroySelf();
+                //DestroySelf();
                 break;
 
             case("Environment"):// collision with environment
