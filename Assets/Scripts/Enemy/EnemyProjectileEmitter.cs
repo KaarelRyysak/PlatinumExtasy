@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyProjectileEmitter : MonoBehaviour
 {
     [SerializeField] IProjectilePattern projectilePattern;
-    [SerializeField] float shootFrequency = 1f;
+    [SerializeField] public float shootFrequency = 1f;
     float shootTime = 0;
     public GameObject projectilePrefab;
     public float projectileSpeed = 250f;

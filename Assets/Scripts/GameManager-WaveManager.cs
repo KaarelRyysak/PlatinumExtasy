@@ -25,7 +25,7 @@ public partial class GameManager {
             int nextEnemyIndex = GetNextEnemyIndex(waveIndex);
 
             // Spawn enemy at random spawn point
-            SpawnEnemy( waveData[waveIndex].enemy[nextEnemyIndex].enemyPrefab, 
+            SpawnEnemy( waveData[waveIndex].enemy[nextEnemyIndex], 
                         spawnPoints[Random.Range (0, spawnPoints.Length)].transform);
 
             // Decriment spawn counter
@@ -102,13 +102,17 @@ public partial class GameManager {
 
 
     // Spawns enemy at random spawn point
-    void SpawnEnemy(GameObject enemy, Transform spawnPoint){
+    void SpawnEnemy(WaveEnemyData enemy, Transform spawnPoint){
 
-        Debug.Log("Spawning Enemy: " + enemy.name);
+        Debug.Log("Spawning Enemy: " + enemy.enemyPrefab.name);
 
-        GameObject newEnemy = Instantiate(enemy, new Vector3(0, 0, 0), Quaternion.identity); // Spawn the player in position
-        newEnemy.name = enemy.name;
+        GameObject newEnemy = Instantiate(enemy.enemyPrefab, new Vector3(0, 0, 0), Quaternion.identity); // Spawn the player in position
+        newEnemy.name = enemy.enemyPrefab.name;
 
         newEnemy.transform.position = spawnPoint.transform.position;
+
+        // Set fire speed
+        float fireSpeed = Random.Range(enemy.shootFrequencyMin, enemy.shootFrequencyMax);
+        newEnemy.GetComponent<EnemyProjectileEmitter>().shootFrequency = fireSpeed;
     }
 }

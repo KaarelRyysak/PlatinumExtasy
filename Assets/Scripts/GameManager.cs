@@ -49,6 +49,8 @@ public partial class GameManager : MonoBehaviour
         public GameObject enemyPrefab;
         [Range(0, 50)] public int spawnCounter;    // Number spawned
         [Range(0, 50)] public int spawnDelay;      // Seconds between each spawn
+        [Range(0.1f, 10f)] public float shootFrequencyMin = 1f;
+        [Range(0.1f, 10f)] public float shootFrequencyMax = 2f;
         public int totalSpawned; // Total number that have been spawned thus far
     }
     [System.Serializable] public class WaveData{

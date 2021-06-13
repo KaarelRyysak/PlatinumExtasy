@@ -71,10 +71,14 @@ MonoBehaviour:
     - enemyPrefab: {fileID: 799710774595523343, guid: c28177a1d50aa674c960b04ef0b21e46, type: 3}
       spawnCounter: 5
       spawnDelay: 3
+      shootFrequencyMin: 1
+      shootFrequencyMax: 3
       totalSpawned: 0
     - enemyPrefab: {fileID: 1495317641261238349, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
       spawnCounter: 8
       spawnDelay: 3
+      shootFrequencyMin: 1
+      shootFrequencyMax: 4
       totalSpawned: 0
   playerPrefab: {fileID: 537548160800339195, guid: 293f7b5d18f60d545b5e9a08af52e9af, type: 3}
   CameraMovement: {fileID: 0}
