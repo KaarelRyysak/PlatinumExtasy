@@ -8,8 +8,6 @@ public partial class GameManager {
 
     public IEnumerator SpawnEnemyLoop(int waveIndex){
 
-        Debug.Log("Running Wave Index: "+waveIndex);
-
         // Which generation of game are we on
         int lifeIndex = stats.timesDied;
 
@@ -104,7 +102,7 @@ public partial class GameManager {
     // Spawns enemy at random spawn point
     void SpawnEnemy(WaveEnemyData enemy, Transform spawnPoint){
 
-        Debug.Log("Spawning Enemy: " + enemy.enemyPrefab.name);
+        // Debug.Log("Spawning Enemy: " + enemy.enemyPrefab.name);
 
         GameObject newEnemy = Instantiate(enemy.enemyPrefab, new Vector3(0, 0, 0), Quaternion.identity); // Spawn the player in position
         newEnemy.name = enemy.enemyPrefab.name;

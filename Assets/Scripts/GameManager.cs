@@ -31,6 +31,7 @@ public partial class GameManager : MonoBehaviour
         public GameObject credits;
         public TextMeshProUGUI gameOverScore;
         public TextMeshProUGUI mainMenuScore;
+        public TextMeshProUGUI platinumDeath;
     }
     public ScreenData screen;
 
@@ -66,7 +67,7 @@ public partial class GameManager : MonoBehaviour
     private GameObject currentPlayer;   
     private GameObject currentLevel;
     private bool playing = false;           // True when the player is spawned in
-
+    private int currentLevelIndex = 0;
 
     // Initialization
     void Awake(){
@@ -114,6 +115,8 @@ public partial class GameManager : MonoBehaviour
     public void StartGame(){
 
         Debug.Log("Starting game!");
+        Debug.Log("waveData.Count: "+waveData.Count);
+
 
         // Destroy any enemies left in scene
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy")) Destroy (enemy);
@@ -136,6 +139,8 @@ public partial class GameManager : MonoBehaviour
 
     public void EndGame(){
         
+        Debug.Log("PLATINUM DEATH!");
+
         playing = false;
 
         Destroy(currentPlayer);
@@ -145,6 +150,8 @@ public partial class GameManager : MonoBehaviour
 
     public void EndGameWin(){
         
+        Debug.Log("YOU WIN!");
+
         playing = false;
 
         Destroy(currentPlayer);
@@ -171,11 +178,21 @@ public partial class GameManager : MonoBehaviour
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Web")) Destroy (enemy);
     }
 
+    // Replace last level in the scene (if present) with the current level map
     public void StartLevel(int levelIndex){
 
-        // TODO: Replace last level in the scene (if present) with the current level map
+        Debug.Log("BEGINNING LEVEL: "+levelIndex);
 
+        // Set current level undex
+        currentLevelIndex = levelIndex;
 
+        // Destroy level if present
+        if (currentLevel) Destroy(currentLevel);
+
+        // Create new level
+        GameObject newLevel = Instantiate(waveData[levelIndex].levelPrefab, new Vector3(0f,0f,0f), Quaternion.identity);
+        newLevel.transform.localScale = new Vector3(1f,1f,1f);
+        newLevel.transform.localPosition = new Vector3(0f,0f,0f);
 
         SpawnPlayer();
         ResetPlayerPosition();
@@ -188,12 +205,9 @@ public partial class GameManager : MonoBehaviour
 
         Debug.Log("LEVEL COMPLETE!");
 
-
-        // TODO: Checks to see if all levels have been completed
-        // For now get main menu
-
-
-        EndGameWin();       
+        // Checks to if all levels have been completed
+        if (currentLevelIndex+1 == waveData.Count) EndGameWin(); // Win state
+        else StartLevel(currentLevelIndex+1); // Next level 
     }
 
     public void EnablePlayerCamera(){
