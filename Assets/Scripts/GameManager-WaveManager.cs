@@ -8,13 +8,15 @@ public partial class GameManager {
 
     public IEnumerator SpawnEnemyLoop(int waveIndex){
 
+        Debug.Log("Running Wave Index: "+waveIndex);
+
         // Reset enemy spawn counters
         foreach(WaveEnemyData enemy in waveData[waveIndex].enemy)
             enemy.totalSpawned = enemy.spawnCounter;
         
         GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("EnemySpawnPoint");
         
-        while (AllEnemiesSpawned(waveIndex)){
+        while (!AllEnemiesSpawned(waveIndex)){
 
             int nextEnemyIndex = GetNextEnemyIndex(waveIndex);
 
@@ -22,11 +24,18 @@ public partial class GameManager {
             SpawnEnemy( waveData[waveIndex].enemy[nextEnemyIndex].enemyPrefab, 
                         spawnPoints[Random.Range (0, spawnPoints.Length)].transform);
 
+            // Decriment spawn counter
+            waveData[waveIndex].enemy[nextEnemyIndex].totalSpawned --;
+
             // Spawn delay
             yield return new WaitForSeconds(waveData[waveIndex].enemy[nextEnemyIndex].spawnDelay);
         }
 
         NextLevel();
+
+        Debug.Log("call");
+
+        yield return null;
     }
 
 
@@ -58,5 +67,11 @@ public partial class GameManager {
     // Spawns enemy at random spawn point
     void SpawnEnemy(GameObject enemy, Transform spawnPoint){
 
+        Debug.Log("Spawning Enemy: " + enemy.name);
+
+        GameObject newEnemy = Instantiate(enemy, new Vector3(0, 0, 0), Quaternion.identity); // Spawn the player in position
+        newEnemy.name = enemy.name;
+
+        newEnemy.transform.position = spawnPoint.transform.position;
     }
 }

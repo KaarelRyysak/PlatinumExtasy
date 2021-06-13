@@ -9,7 +9,7 @@ public partial class GameManager : MonoBehaviour
 
     // Player Stats
     [System.Serializable] public class PlayerStats{
-        public int hp = 5;              // Remaining HP
+        public int hp = 5000;              // Remaining HP
         public int hpMax = 5;           // Max HP value 
         public int enemiesKilled = 0;   // Number of enemies Defeated
         public float timeSurvived = 0;  // How long the player has survived for
@@ -98,6 +98,9 @@ public partial class GameManager : MonoBehaviour
 
     public void StartGame(){
 
+        // Destroy any enemies left in scene
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy")) Destroy (enemy);
+
         // Initialize data
         stats.hp = stats.hpMax;
         stats.currentWave = 0;
@@ -124,7 +127,18 @@ public partial class GameManager : MonoBehaviour
         GetDeathScreen();
     }
 
+    public void EndGameWin(){
+        
+        playing = false;
+
+        Destroy(currentPlayer);
+        DisablePlayerCamera();
+        GetDeathScreen();       // TODO: Set win screen
+    }
+
+
     public void SpawnPlayer(){
+
         currentPlayer = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity); // Spawn the player in position
         currentPlayer.name = "Player";
     }
@@ -160,14 +174,20 @@ public partial class GameManager : MonoBehaviour
         // For now get main menu
 
 
-        GetMainMenu();       
+        EndGameWin();       
     }
 
     public void EnablePlayerCamera(){
 
         if (currentPlayer){
+
+            // Reposition Cam
+            CameraMovement.transform.position = new Vector3(currentPlayer.transform.position.x-0.57f,
+                                                            currentPlayer.transform.position.y+7.04f,
+                                                            currentPlayer.transform.position.z-7.04f);
+
             CameraMovement.enabled = true;
-            CameraMovement.objectToFollow = currentPlayer;
+            CameraMovement.SetTarget(currentPlayer);
         }else{
             Debug.LogError("Error: No player present. CameraMovement can not be enabled at this time.", this);
             DisablePlayerCamera();
