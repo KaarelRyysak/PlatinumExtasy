@@ -134,7 +134,7 @@ MonoBehaviour:
   sprayRandomness: 0.15
   projectileSpeed: 1000
   onFireSound:
-    clip: {fileID: 8300000, guid: e25c7bf56eb81e24fadbc04338027100, type: 3}
+    clip: {fileID: 8300000, guid: 16ffb93070093934a970c5392b26a930, type: 3}
     id: 
     volume: -0.727
     pitch: 0
