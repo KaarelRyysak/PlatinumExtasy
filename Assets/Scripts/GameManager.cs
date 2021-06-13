@@ -145,7 +145,7 @@ public partial class GameManager : MonoBehaviour
 
         Destroy(currentPlayer);
         DisablePlayerCamera();
-        GetDeathScreen();
+        GetDeathScreen(true);
     }
 
     public void EndGameWin(){
@@ -156,7 +156,7 @@ public partial class GameManager : MonoBehaviour
 
         Destroy(currentPlayer);
         DisablePlayerCamera();
-        GetDeathScreen();       // TODO: Set win screen
+        GetDeathScreen(false);       // TODO: Set win screen
     }
 
 
@@ -242,9 +242,16 @@ public partial class GameManager : MonoBehaviour
     //=================//
 
     // Screen to be displayed on death
-    public void GetDeathScreen(){
+    public void GetDeathScreen(bool playerLoss){
         HideAllScreens();
         screen.gameOver.SetActive(true);
+
+        if (playerLoss){
+            screen.platinumDeath.text = "PLATINUM DEATH!";
+        }else{
+            screen.platinumDeath.text = "PLATINUM WIN!\n";
+            screen.platinumDeath.text+= "<size=64>YOU HACKED THE MAINFRAME AND CRUSHED THE CORPOS!\nBLEFF JEZOS IS NO MORE!</size>";
+        }
 
 
         screen.gameOverScore.text = "";

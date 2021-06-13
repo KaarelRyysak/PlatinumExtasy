@@ -64,6 +64,7 @@ MonoBehaviour:
     credits: {fileID: 4238836642177089239}
     gameOverScore: {fileID: 9213128017139047422}
     mainMenuScore: {fileID: 5015640436665542298}
+    platinumDeath: {fileID: 6885229955008325166}
   leaderboard: []
   waveData:
   - levelPrefab: {fileID: 8944541039811139476, guid: c71d3c3193f6b1743b41583b10bcf6c0, type: 3}
@@ -550,6 +551,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 619743079883114488, guid: 2495242ac11f78c4f889559697fb229d, type: 3}
   m_PrefabInstance: {fileID: 5549252139081238250}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6885229955008325166 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1337471513949233348, guid: 2495242ac11f78c4f889559697fb229d, type: 3}
+  m_PrefabInstance: {fileID: 5549252139081238250}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9213128017139047422 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3664096614278372628, guid: 2495242ac11f78c4f889559697fb229d, type: 3}
