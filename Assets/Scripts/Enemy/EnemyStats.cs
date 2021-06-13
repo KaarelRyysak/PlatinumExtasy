@@ -5,7 +5,12 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour
 {
     public float health = 4f;
+    private float lastHealth = 4f;
     public float scoreAwardedOnDeath = 400f;
+
+
+    public AudioManager.AudioSound onHitSound;
+    public AudioManager.AudioSound onDestroySound;
 
     public void TakeDamage(float damage)
     {
@@ -17,6 +22,20 @@ public class EnemyStats : MonoBehaviour
             WebShooter webShooter = FindObjectOfType<WebShooter>();
             webShooter.AddMoreWebBursts(1);
             Destroy(this.gameObject);
+        }
+    }
+
+
+    void Start(){
+        lastHealth = health;
+    }
+
+    void Update(){
+
+        if (lastHealth!=health){
+            lastHealth = health;
+            if (health == 0) FindObjectOfType<AudioManager>().PlaySound(onHitSound);
+            else FindObjectOfType<AudioManager>().PlaySound(onDestroySound);
         }
     }
 }
