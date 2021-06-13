@@ -123,8 +123,14 @@ public class WebProjectile : MonoBehaviour
         exploredBodies.Add(this.rb);
         
         refreshSpringJoints();
+        List<SpringJoint> newSpringJoints = new List<SpringJoint>(springJoints);
         foreach (SpringJoint joint in springJoints)
         {
+            if (joint == null)
+            {
+                newSpringJoints.Remove(joint);
+                continue;
+            }
             if (joint.gameObject.tag == "Enemy")
             {
                 EnemyManager enemyManager = joint.gameObject.GetComponent<EnemyManager>();
@@ -134,6 +140,11 @@ public class WebProjectile : MonoBehaviour
             {
                 WebProjectile enemyManager = joint.gameObject.GetComponent<WebProjectile>();
                 foundEnemies = enemyManager.GetAllAttachedEnemies(exploredBodies, foundEnemies);
+            }
+            if (joint.connectedBody == null)
+            {
+                newSpringJoints.Remove(joint);
+                continue;
             }
             if (joint.connectedBody.gameObject.tag == "Enemy")
             {
