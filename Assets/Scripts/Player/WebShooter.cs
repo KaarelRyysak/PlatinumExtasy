@@ -5,7 +5,7 @@ using UnityEngine;
 public class WebShooter : MonoBehaviour
 {
     public GameObject webProjectilePrefab;
-    private int remainingBursts = 6;
+    public int remainingBursts = 6;
     private int maximumBursts = 6;
     public int shotsPerBurst = 8;
     private int remainingPellets = 0;
