@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 5299134797783889091}
   - component: {fileID: 5548372644202946059}
   - component: {fileID: 4675952963302281630}
-  - component: {fileID: 1423488384043478787}
+  - component: {fileID: 7507401364031181351}
   m_Layer: 0
-  m_Name: PlayerProjectile
+  m_Name: GunProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,7 +158,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
---- !u!114 &1423488384043478787
+--- !u!114 &7507401364031181351
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,8 +167,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2552784447947931927}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dc987d80bc422747a077c4b24dc14b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 012569dd36fa8c94580f12c9732e65d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0, z: 0}
-  speed: 0

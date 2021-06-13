@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WebShooter : MonoBehaviour
+public class GunShooter : MonoBehaviour
 {
-    public GameObject webProjectilePrefab;
-    private int remainingBursts = 6;
-    public int websPerBurst = 8;
-    private int remainingWebs = 0;
-    public float burstSpeed = 0.1f;
+    public GameObject gunProjectilePrefab;
+    public float shootSpeed = 0.2f;
     private float timeSinceLastWeb = 999f;
     public float sprayRandomness = 0.3f;
     public float projectileSpeed;
@@ -22,21 +19,15 @@ public class WebShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ( Input.GetMouseButtonDown(1) && remainingBursts > 0) 
-        { 
-            remainingWebs = websPerBurst;
-        }
-
-        if ( remainingWebs > 0  && timeSinceLastWeb > burstSpeed)
+        if ( Input.GetMouseButton(0) && timeSinceLastWeb > shootSpeed)
         {
-            ShootWeb();
-            remainingWebs -= 1;
+            ShootGun();
             timeSinceLastWeb = 0f;
         }
         timeSinceLastWeb += Time.deltaTime;
     }
 
-    private void ShootWeb()
+    private void ShootGun()
     {
         Debug.DrawRay(transform.position, transform.right, Color.blue, 1f);
 
@@ -47,7 +38,13 @@ public class WebShooter : MonoBehaviour
 
         // Create the new projectile
         Vector3 spawnPos = transform.position + direction;
-        GameObject projectile = Instantiate(webProjectilePrefab, spawnPos, transform.rotation);
+        GameObject projectile = Instantiate(gunProjectilePrefab, spawnPos, transform.rotation);
+        direction = Vector3.Normalize(direction);
         projectile.GetComponent<Rigidbody>().AddForce(direction * projectileSpeed); // Set force in dir
+        
+        // Set projectile prefs
+        GunProjectile GunProjectile = projectile.GetComponent<GunProjectile>();
+        GunProjectile.direction = direction;
+        GunProjectile.speed = projectileSpeed;
     }
 }

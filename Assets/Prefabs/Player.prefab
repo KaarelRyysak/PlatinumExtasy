@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 537548160800339193}
   - component: {fileID: 537548160800339192}
   - component: {fileID: 537548160800339196}
-  - component: {fileID: 1994153541389051512}
   - component: {fileID: 1814095887}
   - component: {fileID: 4251890984207889112}
+  - component: {fileID: 6694235882791593749}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -112,21 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f107a3814b9c442acfcb0464b88a72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1994153541389051512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 537548160800339195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08dd06bb6c1d8f9448db4e2b85fdd586, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 5
-  enemiesKilled: 0
-  timeSurvived: 0
 --- !u!54 &1814095887
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -159,4 +144,20 @@ MonoBehaviour:
   websPerBurst: 8
   burstSpeed: 0.01
   sprayRandomness: 0.15
+  projectileSpeed: 1000
+--- !u!114 &6694235882791593749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537548160800339195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa727aa7605ac94ea525625777380e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunProjectilePrefab: {fileID: 2552784447947931927, guid: 4cbe09753c035a24fa70645bd7f82021, type: 3}
+  shootSpeed: 0.2
+  sprayRandomness: 0.05
   projectileSpeed: 1000
