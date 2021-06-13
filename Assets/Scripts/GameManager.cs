@@ -28,6 +28,7 @@ public partial class GameManager : MonoBehaviour
         public GameObject playerHud;
         public GameObject gameOver;
         public GameObject leaderboard;
+        public GameObject credits;
         public TextMeshProUGUI gameOverScore;
         public TextMeshProUGUI mainMenuScore;
     }
@@ -97,7 +98,16 @@ public partial class GameManager : MonoBehaviour
         }
     }
 
+    public void HideAllScreens(){
+        screen.playerHud.SetActive(false);
+        screen.mainMenu.SetActive(false);
+        screen.gameOver.SetActive(false);
+        screen.credits.SetActive(false);
+    }
+
     public void StartGame(){
+
+        Debug.Log("Starting game!");
 
         // Destroy any enemies left in scene
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy")) Destroy (enemy);
@@ -110,9 +120,8 @@ public partial class GameManager : MonoBehaviour
         stats.score = 0;
 
         // Set HUD active and hide menu
+        HideAllScreens();
         screen.playerHud.SetActive(true);
-        screen.mainMenu.SetActive(false);
-        screen.gameOver.SetActive(false);
         
         StartLevel(0);
 
@@ -211,8 +220,7 @@ public partial class GameManager : MonoBehaviour
 
     // Screen to be displayed on death
     public void GetDeathScreen(){
-        screen.mainMenu.SetActive(false);
-        screen.playerHud.SetActive(false);
+        HideAllScreens();
         screen.gameOver.SetActive(true);
 
 
@@ -239,10 +247,15 @@ public partial class GameManager : MonoBehaviour
 
     // Screen to be displayed on startup
     public void GetMainMenu(){
+        HideAllScreens();
         screen.mainMenu.SetActive(true);
-        screen.playerHud.SetActive(false);
-        screen.gameOver.SetActive(false);
 
         screen.mainMenuScore.text = "Highscore: " + stats.highscore;
+    }
+
+    // Screen to be displayed on startup
+    public void GetCredits(){
+        HideAllScreens();
+        screen.credits.SetActive(true);
     }
 }
