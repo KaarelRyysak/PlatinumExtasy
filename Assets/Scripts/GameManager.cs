@@ -23,9 +23,13 @@ public partial class GameManager : MonoBehaviour
     }
     public PlayerStats stats;
 
-    public AudioSystem soundOnPlayerHit;
-    public AudioSystem soundOnPlayerDeath;
-    public AudioSystem soundOnPlayerWin;
+    [System.Serializable] public class SoundData{
+        public AudioSystem onPlayerHit;
+        public AudioSystem onPlayerDeath;
+        public AudioSystem onPlayerWin;
+        public AudioSystem onShipHit;
+    }
+    public SoundData sound;
 
     // Screen Data
     [System.Serializable] public class ScreenData{
@@ -104,7 +108,8 @@ public partial class GameManager : MonoBehaviour
             // If player was hit
             if (stats.hp<stats.lastHP){
                 stats.lastHP = stats.hp;
-                if (stats.hp!=0) soundOnPlayerHit.PlaySoundRandom();
+                if (stats.hp!=0) sound.onPlayerHit.PlaySoundRandom();
+                sound.onShipHit.PlaySoundRandom();
             }
         }
     }
@@ -156,7 +161,7 @@ public partial class GameManager : MonoBehaviour
         DisablePlayerCamera();
         GetDeathScreen(true);
 
-        soundOnPlayerDeath.PlaySoundRandom();
+        sound.onPlayerDeath.PlaySoundRandom();
     }
 
     public void EndGameWin(){

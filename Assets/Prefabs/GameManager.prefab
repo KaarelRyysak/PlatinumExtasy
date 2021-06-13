@@ -1,5 +1,76 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2665016852969622309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4492321768732462578}
+  - component: {fileID: 3341842054062230382}
+  m_Layer: 0
+  m_Name: ShipOnHit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4492321768732462578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2665016852969622309}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.6279716, y: -1.36969, z: 117.21129}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5015640436087816931}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3341842054062230382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2665016852969622309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09bbacd71feda224e9d4797d43fd9869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundList:
+  - clip: {fileID: 8300000, guid: 0944bd6dbb049c6448080c831028b6ea, type: 3}
+    id: 
+    volume: -0.498
+    pitch: 0
+    output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
+    soundObject: {fileID: 0}
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    rolloffMode: 0
+    setAtObjPos: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: d890e7c03a411c249be43f84c1213ae0, type: 3}
+    id: 
+    volume: -0.316
+    pitch: 0
+    output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
+    soundObject: {fileID: 0}
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    rolloffMode: 0
+    setAtObjPos: 0
+    source: {fileID: 0}
+  randomSoundOnRandomDelay: 0
+  minDelay: 5
+  maxDelay: 100
 --- !u!1 &5015640436087816929
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,6 +105,7 @@ Transform:
   - {fileID: 3843864391825806860}
   - {fileID: 9136238837809760381}
   - {fileID: 2441912898110043753}
+  - {fileID: 4492321768732462578}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -60,9 +132,11 @@ MonoBehaviour:
     timesDied: 0
     newHighscore: 0
     lastHP: 5
-  soundOnPlayerHit: {fileID: 6157129597984654350}
-  soundOnPlayerDeath: {fileID: 8910174141141031299}
-  soundOnPlayerWin: {fileID: 0}
+  sound:
+    onPlayerHit: {fileID: 6157129597984654350}
+    onPlayerDeath: {fileID: 8910174141141031299}
+    onPlayerWin: {fileID: 97402016830905530}
+    onShipHit: {fileID: 3341842054062230382}
   screen:
     mainMenu: {fileID: 5015640437459307861}
     playerHud: {fileID: 5015640436673957897}

@@ -660,7 +660,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &619743079883114489
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2124,7 +2124,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'ASSETS
 
-    BGM - THE BREAKDOWN'
+    <size=45>BGM - THE BREAKDOWN
+
+    Additional sound effects
+    from https://www.zapsplat.com'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 389e4add04c40e34aa042775921bcffe, type: 2}
   m_sharedMaterial: {fileID: 6161551113068731387, guid: 389e4add04c40e34aa042775921bcffe, type: 2}
@@ -2521,7 +2524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5837035651917442322
 RectTransform:
   m_ObjectHideFlags: 0
