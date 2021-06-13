@@ -9,13 +9,14 @@ public partial class GameManager : MonoBehaviour
 
     // Player Stats
     [System.Serializable] public class PlayerStats{
-        public int hp = 5000;              // Remaining HP
+        public int hp = 5000;           // Remaining HP
         public int hpMax = 5;           // Max HP value 
         public int enemiesKilled = 0;   // Number of enemies Defeated
         public float timeSurvived = 0;  // How long the player has survived for
         public float currentWave = 0;   // How long the player has survived for
         public float score = 0;
         public float highscore = 0;
+        public int timesDied = 0;       // Times played flag
         public bool newHighscore;       // Highscore flag
     }
     public PlayerStats stats;
