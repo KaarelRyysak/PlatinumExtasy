@@ -31,7 +31,6 @@ public class PlayerHUD : MonoBehaviour
 
         if (player){
 
-            Debug.Log("WebShooter.remainingBursts: "+WebShooter.remainingBursts);
 
             // Update player HUD
             textHP.text  = "HP: " + GameManager.stats.hp;
