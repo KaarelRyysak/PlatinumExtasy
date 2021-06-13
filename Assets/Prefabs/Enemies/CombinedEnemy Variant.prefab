@@ -1,18 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &6526411179793700328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 799710774595523343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2858de262f5785147bb2bb65ed230735, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &2294948835456310082
+--- !u!1001 &8161803872931722233
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -24,12 +12,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1495317641261238337, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495317641261238337, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495317641261238337, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495317641261238337, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.27
+      value: 7.74
       objectReference: {fileID: 0}
     - target: {fileID: 1495317641261238337, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1495317641261238337, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -65,17 +65,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1495317641261238349, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
       propertyPath: m_Name
-      value: Cross Enemy
+      value: CombinedEnemy Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1495317641261238349, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6583830883828609302, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
+    - target: {fileID: 6636961663663007822, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
+      propertyPath: combinedEnemy
+      value: 
+      objectReference: {fileID: 7315220296007482292}
+    - target: {fileID: 6725800665736580709, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
+      propertyPath: shootFrequency
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725800665736580709, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
+      propertyPath: projectileSpeed
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725800665736580709, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 2552784447947931927, guid: 818e6f0cc0ceb5747be7a23fede3d2c9, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
---- !u!1 &799710774595523343 stripped
+--- !u!1 &7315220296007482292 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1495317641261238349, guid: 1c0b1de9d641e0e42aae4763e9e25fe2, type: 3}
-  m_PrefabInstance: {fileID: 2294948835456310082}
+  m_PrefabInstance: {fileID: 8161803872931722233}
   m_PrefabAsset: {fileID: 0}
