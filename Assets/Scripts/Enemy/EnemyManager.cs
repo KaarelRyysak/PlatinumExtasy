@@ -41,34 +41,12 @@ public class EnemyManager : MonoBehaviour
     //Recursive function that finds all glued together objects and causes damage to those as well
     public void DealDamageToAllAttached(float damage)
     {
-        List<Rigidbody> exploredBodies = new List<Rigidbody>();
-        DealDamageToAllAttached(exploredBodies, damage);
-    }
-
-    public void DealDamageToAllAttached(List<Rigidbody> exploredBodies, float damage)
-    {
-        
-        if (exploredBodies.Contains(rb)) return; //If we've been here before, leave
-
-        //If we haven't been here before, take damage
         TakeDamage(damage);
-        exploredBodies.Add(rb);
-
-        //Let's check if there are any other connected webs/enemies that need to take damage
-        foreach (SpringJoint joint in attachedJoints)
+        List<GameObject> attachedEnemies = GetAllAttachedEnemies();
+        foreach (GameObject enemyObj in attachedEnemies)
         {
-            WebProjectile webProjectile = joint.GetComponent<WebProjectile>();
-            if (webProjectile != null)
-            {
-                webProjectile.DealDamageToAllAttached(exploredBodies, damage);
-                break;
-            }
-
-            EnemyManager enemyManager = joint.GetComponent<EnemyManager>();
-            if (enemyManager != null)
-            {
-                enemyManager.DealDamageToAllAttached(exploredBodies, damage);
-            }
+            EnemyManager enemyManager = enemyObj.gameObject.GetComponent<EnemyManager>();
+            enemyManager.TakeDamage(damage);
         }
     }
 
