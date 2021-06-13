@@ -8,9 +8,13 @@ public class PlayerMovement : MonoBehaviour
     float speed = 5f;
     Rigidbody rb = null;
 
+    private float startingYPos = 0f;
+
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
+
+        startingYPos = transform.position.y;
     }
 
     void Update()
@@ -38,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 newPosition = transform.position;
         newPosition.x += inputVector.x * speed * Time.deltaTime;
         newPosition.z += inputVector.y * speed * Time.deltaTime;
+        newPosition.y = startingYPos;
 
         transform.position = newPosition;
 
