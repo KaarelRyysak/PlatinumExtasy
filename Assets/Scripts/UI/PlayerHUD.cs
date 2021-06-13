@@ -12,6 +12,7 @@ public class PlayerHUD : MonoBehaviour
     public TextMeshProUGUI textScore;
     public Transform webChargeContainer;
     public GameObject webChargePrefab;
+    public TextMeshProUGUI serverText;
 
     private int webLastAmount = 0;
 
@@ -64,5 +65,16 @@ public class PlayerHUD : MonoBehaviour
             // If player was found - Get the web shooter
             if (player) WebShooter = player.GetComponent<WebShooter>();
         }
+    }
+
+    public void SetServerText(string text)
+    {
+        serverText.text = text;
+
+    }
+
+    public void ClearServerText()
+    {
+        serverText.text = "";
     }
 }

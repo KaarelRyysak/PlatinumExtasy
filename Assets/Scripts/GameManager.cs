@@ -222,6 +222,8 @@ public partial class GameManager : MonoBehaviour
     public void NextLevel(){
 
         Debug.Log("LEVEL COMPLETE!");
+        screen.playerHud.GetComponent<PlayerHUD>().SetServerText("Server " + ((int)currentLevelIndex + (int)1) + " Hacked!");
+        screen.playerHud.GetComponent<PlayerHUD>().Invoke("ClearServerText", 2f);
 
         // Checks to if all levels have been completed
         if (currentLevelIndex+1 == waveData.Count) EndGameWin(); // Win state
