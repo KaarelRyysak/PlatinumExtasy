@@ -172,3 +172,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   springJoints: []
   lifetime: 20
+  fadeColor: {r: 1, g: 0.0141509175, b: 0.0141509175, a: 1}
+  fadeDuration: 5
+  fadeStartTime: 0

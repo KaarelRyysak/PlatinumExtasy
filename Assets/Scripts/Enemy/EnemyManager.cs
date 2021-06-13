@@ -10,6 +10,13 @@ public class EnemyManager : MonoBehaviour
     private float refreshAttachedFrequency = 10f;
     private EnemyStats enemyStats;
     private Rigidbody rb;
+
+    private MeshRenderer meshRenderer = null;
+
+    private Color objectColor;
+    public Color fadeColor = Color.white;
+    public float fadeDuration = 5f;
+    public float fadeStartTime = 0f;
     
     void Awake()
     {
@@ -17,6 +24,12 @@ public class EnemyManager : MonoBehaviour
 
         enemyStats = this.gameObject.GetComponent<EnemyStats>();
         rb = this.gameObject.GetComponent<Rigidbody>();
+
+        //Find meshrenderer to change material color
+        meshRenderer = this.gameObject.GetComponent<MeshRenderer>();
+        objectColor = meshRenderer.material.color;
+        meshRenderer.material.color = fadeColor;
+        fadeStartTime = Time.time;
     }
 
     public void Update()
@@ -25,6 +38,14 @@ public class EnemyManager : MonoBehaviour
         if (Time.time > lastRefreshTime + refreshAttachedFrequency)
         {
             refreshAttachedJoints();
+        }
+        
+
+        //Flash white when necessary
+        if (Time.time < fadeDuration + fadeStartTime)
+        {
+            float percent = (Time.time - fadeStartTime) / fadeDuration;
+            gameObject.GetComponent<Renderer>().material.color = Color.Lerp(fadeColor, objectColor, percent);
         }
     }
     public void refreshAttachedJoints()
@@ -54,8 +75,13 @@ public class EnemyManager : MonoBehaviour
     public void TakeDamage(float damage)
     {
         enemyStats.TakeDamage(damage);
-        
-        //flash model white here
+        FlashWhite();
+    }
+
+    public void FlashWhite()
+    {
+        fadeStartTime = Time.time;
+        meshRenderer.material.color = fadeColor;
     }
 
     //Gets every enemy attached to this gameobject, use this one Cade :)

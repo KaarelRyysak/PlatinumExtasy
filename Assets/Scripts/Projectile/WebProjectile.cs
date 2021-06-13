@@ -10,6 +10,12 @@ public class WebProjectile : MonoBehaviour
 
     private Rigidbody rb;
 
+    private MeshRenderer meshRenderer = null;
+    private Color objectColor;
+    public Color fadeColor = Color.white;
+    public float fadeDuration = 5f;
+    public float fadeStartTime = 0f;
+
     void Awake()
     {
         springJoints = new List<SpringJoint>();
@@ -17,6 +23,12 @@ public class WebProjectile : MonoBehaviour
         spawntime = Time.time;
 
         rb = this.gameObject.GetComponent<Rigidbody>();
+
+        //Find meshrenderer to change material color
+        meshRenderer = this.gameObject.GetComponent<MeshRenderer>();
+        objectColor = meshRenderer.material.color;
+        meshRenderer.material.color = fadeColor;
+        fadeStartTime = Time.time;
     }
 
     // Update is called once per frame
@@ -27,8 +39,20 @@ public class WebProjectile : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        //Flash white when necessary
+        if (Time.time < fadeDuration + fadeStartTime)
+        {
+            float percent = (Time.time - fadeStartTime) / fadeDuration;
+            gameObject.GetComponent<Renderer>().material.color = Color.Lerp(fadeColor, objectColor, percent);
+        }
     }
 
+    public void FlashWhite()
+    {
+        fadeStartTime = Time.time;
+        meshRenderer.material.color = fadeColor;
+    }
 
     void OnCollisionEnter(Collision collision)
     {
@@ -99,7 +123,8 @@ public class WebProjectile : MonoBehaviour
 
     public void DealDamageToAllAttached(float damage)
     {
-        //TakeDamage(damage);
+        TakeDamage();
+
         List<GameObject> attachedEnemies = GetAllAttachedEnemies();
         foreach (GameObject enemyObj in attachedEnemies)
         {
@@ -110,7 +135,7 @@ public class WebProjectile : MonoBehaviour
 
     public void TakeDamage()
     {
-        //Make color flash white here
+        FlashWhite();
     }
 
     public List<GameObject> GetAllAttachedEnemies()

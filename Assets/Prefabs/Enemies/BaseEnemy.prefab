@@ -170,6 +170,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachedJoints: []
+  fadeColor: {r: 0.28627455, g: 0.9164379, b: 1, a: 1}
+  fadeDuration: 0.1
+  fadeStartTime: 0
 --- !u!114 &6636961663663007822
 MonoBehaviour:
   m_ObjectHideFlags: 0
