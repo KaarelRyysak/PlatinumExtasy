@@ -34,8 +34,8 @@ public class EnemyStats : MonoBehaviour
 
         if (lastHealth!=health){
             lastHealth = health;
-            if (health == 0) FindObjectOfType<AudioManager>().PlaySound(onHitSound);
-            else FindObjectOfType<AudioManager>().PlaySound(onDestroySound);
+            if (health == 0) FindObjectOfType<AudioManager>().PlaySound(onDestroySound);
+            else FindObjectOfType<AudioManager>().PlaySound(onHitSound);
         }
     }
 

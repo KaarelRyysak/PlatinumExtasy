@@ -214,12 +214,12 @@ MonoBehaviour:
   health: 4
   scoreAwardedOnDeath: 400
   onHitSound:
-    clip: {fileID: 8300000, guid: d890e7c03a411c249be43f84c1213ae0, type: 3}
+    clip: {fileID: 8300000, guid: 0944bd6dbb049c6448080c831028b6ea, type: 3}
     id: 
-    volume: -0.5
+    volume: -0.796
     pitch: 0
     output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
-    soundObject: {fileID: 0}
+    soundObject: {fileID: 1495317641261238349}
     spatialBlend: 0
     minDistance: 1
     maxDistance: 10
@@ -227,12 +227,12 @@ MonoBehaviour:
     setAtObjPos: 1
     source: {fileID: 0}
   onDestroySound:
-    clip: {fileID: 8300000, guid: 0944bd6dbb049c6448080c831028b6ea, type: 3}
+    clip: {fileID: 8300000, guid: d890e7c03a411c249be43f84c1213ae0, type: 3}
     id: 
-    volume: -0.5
+    volume: -0.433
     pitch: 0
     output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
-    soundObject: {fileID: 0}
+    soundObject: {fileID: 1495317641261238349}
     spatialBlend: 0
     minDistance: 1
     maxDistance: 10
