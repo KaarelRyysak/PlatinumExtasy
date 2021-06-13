@@ -72,7 +72,8 @@ public class CombinerAbility : MonoBehaviour
             if (connections[attachedEnemies[i]] >= combineTimeThreshold)
             {
                 CombineWithEnemy(attachedEnemies[i]);
-                attachedEnemies[i].GetComponent<CombinerAbility>().CancelInvoke();
+                CombinerAbility combinerAbility = attachedEnemies[i].GetComponent<CombinerAbility>();
+                if (combinerAbility) { combinerAbility.CancelInvoke(); }
                 CancelInvoke("EvaluateAttachedEnemies");
                 break;
             }
