@@ -10,12 +10,16 @@ public partial class GameManager {
 
         Debug.Log("Running Wave Index: "+waveIndex);
 
+        // Which generation of game are we on
+        int lifeIndex = stats.timesDied;
+
         // Reset enemy spawn counters
         foreach(WaveEnemyData enemy in waveData[waveIndex].enemy)
             enemy.totalSpawned = enemy.spawnCounter;
         
         GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("EnemySpawnPoint");
         
+        // Spawn enemies
         while (!AllEnemiesSpawned(waveIndex)){
 
             int nextEnemyIndex = GetNextEnemyIndex(waveIndex);
@@ -29,13 +33,39 @@ public partial class GameManager {
 
             // Spawn delay
             yield return new WaitForSeconds(waveData[waveIndex].enemy[nextEnemyIndex].spawnDelay);
+
+            // Check if player is dead
+            if (PlayerHasDied(lifeIndex)) yield break;
         }
+
+
+        // Wait for all enemies to be defeated
+        while (!AllEnemiesDefeated()){
+
+            if (PlayerHasDied(lifeIndex)) yield break;
+
+            yield return new WaitForSeconds(1);
+
+        }
+
+
+        if (PlayerHasDied(lifeIndex)) yield break;
 
         NextLevel();
 
-        Debug.Log("call");
-
         yield return null;
+    }
+
+
+
+
+    // Checks to see if the player has died during SpawnEnemyLoop
+    bool PlayerHasDied(int lifeIndex){
+
+        // Check if the logged death counter doesn't allign
+        // with the current death counter, & end the wave if true
+        if (stats.timesDied!=lifeIndex) return true;
+        else return false;
     }
 
 
@@ -47,6 +77,13 @@ public partial class GameManager {
             if (enemy.totalSpawned!=0) return false;
         
         return true;
+    }
+
+    // Check to see if all enemies have been defeated
+    bool AllEnemiesDefeated(){
+
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length > 0) return false;
+        else return true;
     }
 
 
