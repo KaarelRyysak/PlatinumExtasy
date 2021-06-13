@@ -14,6 +14,8 @@ public class EnemyStats : MonoBehaviour
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
             gameManager.stats.score += scoreAwardedOnDeath;
+            WebShooter webShooter = FindObjectOfType<WebShooter>();
+            webShooter.AddMoreWebBursts(1);
             Destroy(this.gameObject);
         }
     }
