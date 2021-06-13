@@ -160,6 +160,9 @@ public partial class GameManager : MonoBehaviour
             return;
         }
         currentPlayer.transform.position = spawnTarget.transform.position;
+
+        // Destroy any web left in the scene
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Web")) Destroy (enemy);
     }
 
     public void StartLevel(int levelIndex){
