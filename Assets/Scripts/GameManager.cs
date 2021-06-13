@@ -104,14 +104,14 @@ public partial class GameManager : MonoBehaviour
             // If player was hit
             if (stats.hp<stats.lastHP){
                 stats.lastHP = stats.hp;
-                // soundOnPlayerHit
+                if (stats.hp!=0) soundOnPlayerHit.PlaySoundRandom();
             }
         }
     }
 
     void FixedUpdate(){
-            // Score calculation
-            stats.score += (int)(Time.fixedDeltaTime * 100);
+        // Score calculation
+        stats.score += (int)(Time.fixedDeltaTime * 100);
 
     }
 
@@ -124,7 +124,8 @@ public partial class GameManager : MonoBehaviour
 
     public void StartGame(){
 
-        Debug.Log("Starting game!");
+        Debug.Log("Starting Game!");
+        stats.lastHP = stats.hp;
 
         // Destroy any enemies left in scene
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy")) Destroy (enemy);
@@ -154,6 +155,8 @@ public partial class GameManager : MonoBehaviour
         Destroy(currentPlayer);
         DisablePlayerCamera();
         GetDeathScreen(true);
+
+        soundOnPlayerDeath.PlaySoundRandom();
     }
 
     public void EndGameWin(){
