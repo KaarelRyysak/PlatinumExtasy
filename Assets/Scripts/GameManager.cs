@@ -194,7 +194,8 @@ public partial class GameManager : MonoBehaviour
         newLevel.transform.localScale = new Vector3(1f,1f,1f);
         newLevel.transform.localPosition = new Vector3(0f,0f,0f);
 
-        SpawnPlayer();
+        // spawn player if this is the first level
+        if (levelIndex==0 ) SpawnPlayer();
         ResetPlayerPosition();
         EnablePlayerCamera();
 
