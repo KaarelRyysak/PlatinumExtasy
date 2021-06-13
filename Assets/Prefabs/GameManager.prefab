@@ -32,6 +32,8 @@ Transform:
   m_Children:
   - {fileID: 5015640437611719641}
   - {fileID: 3843864391825806860}
+  - {fileID: 9136238837809760381}
+  - {fileID: 2441912898110043753}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -59,7 +61,7 @@ MonoBehaviour:
     newHighscore: 0
     lastHP: 5
   soundOnPlayerHit: {fileID: 6157129597984654350}
-  soundOnPlayerDeath: {fileID: 0}
+  soundOnPlayerDeath: {fileID: 8910174141141031299}
   soundOnPlayerWin: {fileID: 0}
   screen:
     mainMenu: {fileID: 5015640437459307861}
@@ -196,6 +198,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da646d3611d1ea84693f846e22573b1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8391515181236395211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2441912898110043753}
+  - component: {fileID: 97402016830905530}
+  m_Layer: 0
+  m_Name: PlayerOnWin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2441912898110043753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8391515181236395211}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5015640436087816931}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &97402016830905530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8391515181236395211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09bbacd71feda224e9d4797d43fd9869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundList: []
+  randomSoundOnRandomDelay: 0
+  minDelay: 5
+  maxDelay: 100
 --- !u!1 &8528288011119316290
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,11 +289,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundList:
-  - clip: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 93d8aafd489e5a64abf2184b8687c7fe, type: 3}
     id: 
     volume: 0
     pitch: 0
-    output: {fileID: 0}
+    output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
     soundObject: {fileID: 0}
     spatialBlend: 0
     minDistance: 0
@@ -252,11 +301,11 @@ MonoBehaviour:
     rolloffMode: 0
     setAtObjPos: 0
     source: {fileID: 0}
-  - clip: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 0ce8b81d206f06643bf338734f7c8561, type: 3}
     id: 
     volume: 0
     pitch: 0
-    output: {fileID: 0}
+    output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
     soundObject: {fileID: 0}
     spatialBlend: 0
     minDistance: 0
@@ -264,11 +313,106 @@ MonoBehaviour:
     rolloffMode: 0
     setAtObjPos: 0
     source: {fileID: 0}
-  - clip: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 6efcbf5886ed40e478020796b6f6f9a3, type: 3}
     id: 
     volume: 0
     pitch: 0
-    output: {fileID: 0}
+    output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
+    soundObject: {fileID: 0}
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    rolloffMode: 0
+    setAtObjPos: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 93d8aafd489e5a64abf2184b8687c7fe, type: 3}
+    id: 
+    volume: 0
+    pitch: 0
+    output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
+    soundObject: {fileID: 0}
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    rolloffMode: 0
+    setAtObjPos: 0
+    source: {fileID: 0}
+  randomSoundOnRandomDelay: 0
+  minDelay: 5
+  maxDelay: 100
+--- !u!1 &8598599008371397121
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9136238837809760381}
+  - component: {fileID: 8910174141141031299}
+  m_Layer: 0
+  m_Name: PlayerOnDeath
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9136238837809760381
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8598599008371397121}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5015640436087816931}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8910174141141031299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8598599008371397121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09bbacd71feda224e9d4797d43fd9869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundList:
+  - clip: {fileID: 8300000, guid: f9ef11756ef6df346bbe49f5f9278b40, type: 3}
+    id: 
+    volume: 0
+    pitch: 0
+    output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
+    soundObject: {fileID: 0}
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    rolloffMode: 0
+    setAtObjPos: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: e52669cd605728b40a2e3c072c330cfb, type: 3}
+    id: 
+    volume: 0
+    pitch: 0
+    output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
+    soundObject: {fileID: 0}
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    rolloffMode: 0
+    setAtObjPos: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: f8bbedf4f314354449ae7cc4f7b42f4a, type: 3}
+    id: 
+    volume: 0
+    pitch: 0
+    output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
     soundObject: {fileID: 0}
     spatialBlend: 0
     minDistance: 0
