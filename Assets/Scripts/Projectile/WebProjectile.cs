@@ -32,7 +32,7 @@ public class WebProjectile : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if ( collision.rigidbody != null  && collision.gameObject.tag != "Player") 
+        if ( collision.rigidbody != null && collision.gameObject.tag != "Player") 
         {
             foreach (ContactPoint contact in collision.contacts)
             {
@@ -40,6 +40,25 @@ public class WebProjectile : MonoBehaviour
             }
             
         }
+        else if (collision.gameObject.tag == "Environment")
+        {
+            foreach (ContactPoint contact in collision.contacts)
+            {
+                AttachToEnvironment(contact.point);
+            }
+        }
+    }
+
+    void AttachToEnvironment(Vector3 contactPoint)
+    {
+        SpringJoint springJoint = this.gameObject.AddComponent<SpringJoint>();
+        springJoints.Add(springJoint);
+        
+        springJoint.anchor = new Vector3(0f, 0.5f, 0f);
+        springJoint.connectedAnchor = contactPoint;
+        springJoint.spring = 40f;
+        springJoint.damper = 4f;
+        springJoint.breakForce = 50f;
     }
 
     void CreateSpringJoint(Rigidbody target, Vector3 contactPoint)
@@ -52,7 +71,7 @@ public class WebProjectile : MonoBehaviour
         springJoint.connectedAnchor = contactPoint;
         springJoint.spring = 40f;
         springJoint.damper = 4f;
-        springJoint.breakForce = 35f;
+        springJoint.breakForce = 50f;
 
         EnemyManager enemyManager = target.gameObject.GetComponent<EnemyManager>();
         if (enemyManager != null)
@@ -80,33 +99,12 @@ public class WebProjectile : MonoBehaviour
 
     public void DealDamageToAllAttached(float damage)
     {
-        List<Rigidbody> exploredBodies = new List<Rigidbody>();
-        DealDamageToAllAttached(exploredBodies, damage);
-    }
-
-    public void DealDamageToAllAttached(List<Rigidbody> exploredBodies, float damage)
-    {
-        if (exploredBodies.Contains(rb)) return; //If we've been here before, leave
-
-        //If we haven't been here before, take damage
-        TakeDamage();
-        exploredBodies.Add(rb);
-
-        //Let's check if there are any other connected webs/enemies that need to take damage
-        foreach (SpringJoint joint in springJoints)
+        //TakeDamage(damage);
+        List<GameObject> attachedEnemies = GetAllAttachedEnemies();
+        foreach (GameObject enemyObj in attachedEnemies)
         {
-            WebProjectile webProjectile = joint.connectedBody.GetComponent<WebProjectile>();
-            if (webProjectile != null)
-            {
-                webProjectile.DealDamageToAllAttached(exploredBodies, damage);
-                break;
-            }
-
-            EnemyManager enemyManager = joint.connectedBody.GetComponent<EnemyManager>();
-            if (enemyManager != null)
-            {
-                enemyManager.TakeDamage(damage);
-            }
+            EnemyManager enemyManager = enemyObj.gameObject.GetComponent<EnemyManager>();
+            enemyManager.TakeDamage(damage);
         }
     }
 
@@ -115,6 +113,13 @@ public class WebProjectile : MonoBehaviour
         //Make color flash white here
     }
 
+    public List<GameObject> GetAllAttachedEnemies()
+    {
+        List<Rigidbody> exploredBodies = new List<Rigidbody>();
+        List<GameObject> foundEnemies = new List<GameObject>();
+        foundEnemies = GetAllAttachedEnemies(exploredBodies, foundEnemies);
+        return foundEnemies;
+    }
     public List<GameObject> GetAllAttachedEnemies(List<Rigidbody> exploredBodies, List<GameObject> foundEnemies)
     {
         if (exploredBodies.Contains(rb)) return foundEnemies; //If we've been here before, leave
