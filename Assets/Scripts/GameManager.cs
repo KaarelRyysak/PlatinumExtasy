@@ -95,9 +95,13 @@ public partial class GameManager : MonoBehaviour
             // Time survived
             stats.timeSurvived += Time.deltaTime;
             
-            // Score calculation
-            stats.score += (int)(stats.timeSurvived * 10);
         }
+    }
+
+    void FixedUpdate(){
+            // Score calculation
+            stats.score += (int)(Time.fixedDeltaTime * 100);
+
     }
 
     public void HideAllScreens(){

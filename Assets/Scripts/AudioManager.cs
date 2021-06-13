@@ -21,7 +21,9 @@ public partial class AudioManager : MonoBehaviour
 
         [Range (0f, 500f)] public float minDistance = 1f;
         [Range (0f, 500f)] public float maxDistance = 10f;
-        public AudioRolloffMode rolloffMode; 
+        public AudioRolloffMode rolloffMode;
+
+        public bool setAtObjPos = false;
 
         [HideInInspector] public AudioSource source;
 
