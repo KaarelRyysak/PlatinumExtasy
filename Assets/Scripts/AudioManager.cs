@@ -10,12 +10,18 @@ public partial class AudioManager : MonoBehaviour
     [System.Serializable] public class AudioSound{
         public AudioClip clip; // 
         public string id; // 
-        [Range(0f, 1f)] public int volume; // 
-        [Range(0f, 1f)] public int pitch;  // 
+        [Range(-1f, 1f)] public float volume; // 
+        [Range(-1f, 1f)] public float pitch;  // 
 
 
         public AudioMixerGroup output;
         public GameObject soundObject;
+
+        [Range (0f, 1f)] public float spatialBlend = 0f;
+
+        [Range (0f, 500f)] public float minDistance = 1f;
+        [Range (0f, 500f)] public float maxDistance = 10f;
+        public AudioRolloffMode rolloffMode; 
 
         [HideInInspector] public AudioSource source;
 
@@ -28,6 +34,11 @@ public partial class AudioManager : MonoBehaviour
             copy.clip = old.clip;
             copy.output = old.output;
             copy.soundObject = old.soundObject;
+
+            copy.spatialBlend = old.spatialBlend;
+            copy.minDistance = old.minDistance;
+            copy.maxDistance = old.maxDistance;
+            copy.rolloffMode = old.rolloffMode;
 
             return copy;
         }
@@ -57,6 +68,7 @@ public partial class AudioManager : MonoBehaviour
 
         GameObject soundObject = new GameObject();
         soundObject.transform.SetParent(sound.soundObject.transform);   // Set new sound object as child
+        soundObject.transform.localPosition = new Vector3(0f,0f,0f);
         soundObject.name = sound.id;        // Sets the object name - Mostly pointless but good for debugging
         sound.soundObject = soundObject;    // Assing object reference back to sound class
 
@@ -65,8 +77,16 @@ public partial class AudioManager : MonoBehaviour
         if (sound.output)
             sound.source.outputAudioMixerGroup = sound.output;              // Set output
         sound.source.clip   = sound.clip;
+
+
         sound.source.volume = sound.volume+1;
         sound.source.pitch  = sound.pitch+1;
+
+        // 3D sound
+        sound.source.spatialBlend   = sound.spatialBlend;
+        sound.source.minDistance   = sound.minDistance;
+        sound.source.maxDistance   = sound.maxDistance;
+        sound.source.rolloffMode = sound.rolloffMode;
 
         sound.source.Play();
 
@@ -77,11 +97,12 @@ public partial class AudioManager : MonoBehaviour
     IEnumerator DestroySound(AudioSound sound){
         
         // Play until SFX is complete
-        while (sound.source.isPlaying)
+        while (sound.soundObject && sound.source.isPlaying)
             yield return 0; // wait for next frame
 
         // Destroy the sound object
-        Destroy(sound.soundObject);
+        if (sound.soundObject)
+            Destroy(sound.soundObject);
 
         yield break;
     }

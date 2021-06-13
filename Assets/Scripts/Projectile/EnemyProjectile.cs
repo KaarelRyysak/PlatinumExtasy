@@ -15,6 +15,9 @@ public class EnemyProjectile : MonoBehaviour
     private float damage = 1f; 
     private Rigidbody rb;
 
+    public AudioManager.AudioSound onFireSound;
+    private AudioManager AudioManager;
+
     public void Awake(){
         rb = GetComponent<Rigidbody>();
         velocity = rb.velocity; // Get initial velocity
@@ -25,6 +28,9 @@ public class EnemyProjectile : MonoBehaviour
         Destroy(gameObject, destroyTime);           // Destroy after seconds
         scale = gameObject.transform.localScale.x;   // Get projectile scale
 
+        // Link the emitter to the AudioManager
+        AudioManager = FindObjectOfType<AudioManager>();
+        if (!AudioManager) Debug.LogError("ERROR: AudioManager could not be found on this object! Please add one!",this);
     }
 
 

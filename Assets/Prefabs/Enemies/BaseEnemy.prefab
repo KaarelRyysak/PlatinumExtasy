@@ -34,7 +34,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1495317641261238349}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.003904, y: 1.5, z: 8.059768}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -145,6 +145,18 @@ MonoBehaviour:
   shootFrequency: 3
   projectilePrefab: {fileID: 2552784447947931927, guid: 818e6f0cc0ceb5747be7a23fede3d2c9, type: 3}
   projectileSpeed: 250
+  onFireSound:
+    clip: {fileID: 8300000, guid: 164ed4fdd98fea34ca90a681201e835c, type: 3}
+    id: 
+    volume: -0.579
+    pitch: 0
+    output: {fileID: -5965042708952310829, guid: d0be708a09f55c146a359b72a42a0921, type: 2}
+    soundObject: {fileID: 1495317641261238349}
+    spatialBlend: 0
+    minDistance: 1
+    maxDistance: 10
+    rolloffMode: 1
+    source: {fileID: 0}
 --- !u!114 &6583830883828609302
 MonoBehaviour:
   m_ObjectHideFlags: 0
