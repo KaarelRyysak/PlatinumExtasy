@@ -42,6 +42,8 @@ public partial class AudioManager : MonoBehaviour
             copy.maxDistance = old.maxDistance;
             copy.rolloffMode = old.rolloffMode;
 
+            copy.setAtObjPos = old.setAtObjPos;
+
             return copy;
         }
     }
@@ -69,8 +71,14 @@ public partial class AudioManager : MonoBehaviour
     private void PlaySoundStart(AudioSound sound){
 
         GameObject soundObject = new GameObject();
-        soundObject.transform.SetParent(sound.soundObject.transform);   // Set new sound object as child
-        soundObject.transform.localPosition = new Vector3(0f,0f,0f);
+
+        if (!sound.setAtObjPos){
+            soundObject.transform.SetParent(sound.soundObject.transform);   // Set new sound object as child
+            soundObject.transform.localPosition = new Vector3(0f,0f,0f);
+        }else{
+            soundObject.transform.localPosition = sound.soundObject.transform.localPosition;
+        }
+
         soundObject.name = sound.id;        // Sets the object name - Mostly pointless but good for debugging
         sound.soundObject = soundObject;    // Assing object reference back to sound class
 
