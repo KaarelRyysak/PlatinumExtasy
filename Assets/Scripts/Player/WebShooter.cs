@@ -14,10 +14,16 @@ public class WebShooter : MonoBehaviour
     public float sprayRandomness = 0.3f;
     public float projectileSpeed;
     private float remainingBlobs = 6f;
+
+    public AudioManager.AudioSound onFireSound;
+    private AudioManager AudioManager;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        // Link the emitter to the AudioManager
+        AudioManager = FindObjectOfType<AudioManager>();
+        if (!AudioManager) Debug.LogError("ERROR: AudioManager could not be found on this object! Please add one!",this);
     }
 
     // Update is called once per frame
@@ -28,6 +34,9 @@ public class WebShooter : MonoBehaviour
             remainingPellets = shotsPerBurst;
             remainingBursts -= 1;
             //Add this to UI too
+
+            // Play sound
+            if (onFireSound.clip != null) AudioManager.PlaySound(onFireSound);
         }
 
         if ( remainingPellets > 0  && timeSinceLastWeb > burstSpeed)
@@ -67,5 +76,6 @@ public class WebShooter : MonoBehaviour
         Vector3 spawnPos = transform.position + direction;
         GameObject projectile = Instantiate(webProjectilePrefab, spawnPos, transform.rotation);
         projectile.GetComponent<Rigidbody>().AddForce(direction * projectileSpeed); // Set force in dir
+
     }
 }
