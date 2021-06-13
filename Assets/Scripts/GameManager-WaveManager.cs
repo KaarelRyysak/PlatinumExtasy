@@ -15,6 +15,7 @@ public partial class GameManager {
         foreach(WaveEnemyData enemy in waveData[waveIndex].enemy)
             enemy.totalSpawned = enemy.spawnCounter;
         
+        yield return new WaitForSeconds(1);
         GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("EnemySpawnPoint");
         
         // Spawn enemies

@@ -18,9 +18,14 @@ public partial class GameManager : MonoBehaviour
         public float highscore = 0;
         public int timesDied = 0;       // Times played flag
         public bool newHighscore;       // Highscore flag
+        
+        [HideInInspector] public int lastHP = 5;
     }
     public PlayerStats stats;
 
+    public AudioSystem soundOnPlayerHit;
+    public AudioSystem soundOnPlayerDeath;
+    public AudioSystem soundOnPlayerWin;
 
     // Screen Data
     [System.Serializable] public class ScreenData{
@@ -96,6 +101,11 @@ public partial class GameManager : MonoBehaviour
             // Time survived
             stats.timeSurvived += Time.deltaTime;
             
+            // If player was hit
+            if (stats.hp<stats.lastHP){
+                stats.lastHP = stats.hp;
+                // soundOnPlayerHit
+            }
         }
     }
 
